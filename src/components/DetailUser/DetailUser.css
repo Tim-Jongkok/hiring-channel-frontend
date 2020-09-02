@@ -1,0 +1,38 @@
+.main-content {
+    position: relative;
+}
+
+.body-content {
+    position: absolute;
+    top: 25vh;
+}
+
+.profil-pict {
+    width: 250px;
+    height: 45vh;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.top-jumbotron {
+    background-color: rgba(171, 132, 200, 0.5);
+    height: 350px;
+}
+
+.small-icon {
+    width: 20px;
+}
+
+.btn-hire {
+    background-color: #AB84C8;
+    color: #FFF;
+    width: 80%;
+}
+
+/* DESKTOP */
+
+@media only screen and (min-width: 992px) {
+    .profil-pict {
+        width: 100%;
+    }
+}
