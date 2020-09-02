@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import logo from "../../assets/img/logo.png";
 import search_icon from "../../assets/img/search.png";
 import chat_icon from "../../assets/img/chat.png";
 import bell_icon from "../../assets/img/bell.png";
 import menu_icon from "../../assets/img/menu.webp";
+import MenuExpanded from "../MenuExpanded/MenuExpanded";
 import "./Header.css";
 
-const Header = () => {
+const Header = (props) => {
+  const [menuDisplayed, setDisplayMenu] = useState(false);
+  const onClickHandle = ()=>{
+    setDisplayMenu(!menuDisplayed);
+  }
   return (
+    <>
     <header>
       <div className="logo">
         <img src={logo} alt="" />
@@ -18,7 +24,7 @@ const Header = () => {
         </div>
         <input type="text" name="search" placeholder="Search" />
       </div>
-      <div className="menu-icon">
+      <div className="menu-icon" onClick={onClickHandle}>
         <img src={menu_icon} alt="" />
       </div>
       <button className="home-button">Home</button>
@@ -40,6 +46,8 @@ const Header = () => {
         </div>
       </div>
     </header>
+    <MenuExpanded displayed={menuDisplayed} />
+    </>
   );
 };
 
