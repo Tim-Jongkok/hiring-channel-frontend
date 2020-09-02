@@ -1,0 +1,48 @@
+import React from "react";
+import check_icon from "../../assets/img/check.png";
+import star_icon from "../../assets/img/star.png";
+import "./UserCard.css";
+
+const UserCard = ({ user, ...rest }) => {
+  let style = {};
+  style.height = Math.round(Math.random() * 300) + 100;
+  style.width = Math.round(Math.random() * 100) + 100;
+  style.height = style.height.toString() + "px";
+  style.width = style.width.toString() + "px";
+  return (
+    <>
+      <div className="row no-gutters justify-content-center">
+        <div className="card-container nopadding" style={style}>
+          <div className="user-image">
+            <img src={user.image} alt="" />
+          </div>
+          <div className="card-text">
+            <h5>{user.name}</h5>
+            <p>{user.field}</p>
+            <div className="rating-project-container">
+              <div className="project">
+                <div className="project-image">
+                  <img src={check_icon} alt="" />
+                </div>
+                <p>{user.project}% project</p>
+              </div>
+              <div className="rating">
+                <div className="rating-image">
+                  <img src={star_icon} alt="" />
+                </div>
+                <p>{user.rating}% success rate</p>
+              </div>
+            </div>
+            <p>
+              Skills:
+              <br />
+              {user.skill}
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default UserCard;
