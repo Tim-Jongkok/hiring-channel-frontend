@@ -1,0 +1,56 @@
+.container-auth {
+  width: 100%;
+  display: flex;
+}
+
+.component-form {
+  width: 40%;
+  height: 100vh;
+}
+
+.title-register p {
+  font-size: 5vh;
+  font-weight: bold;
+}
+
+.form-register {
+  margin-top: 5vh;
+}
+
+.form-register input[type="text"],
+input[type="password"] {
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.btn-forgot {
+  cursor: pointer;
+}
+
+.btn-login {
+  color: #ffffff;
+  background-color: #ab84c8;
+}
+
+.btn-register {
+  color: #ab84c8;
+  background-color: #ffffff;
+  border: 1px solid #ab84c8;
+  box-sizing: border-box;
+}
+
+.button-login {
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+}
+
+.register {
+  margin-top: 19vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .component-form {
+    width: 100%;
+  }
+}

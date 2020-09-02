@@ -1,0 +1,45 @@
+.component-logo {
+  width: 60%;
+  height: 100vh;
+  background: linear-gradient(
+      211.1deg,
+      #f1c9ec 1.53%,
+      rgba(255, 255, 255, 0) 81.18%
+    ),
+    #ab84c8;
+  border-radius: 4px;
+}
+
+.logo-arka img {
+  margin-top: 3vh;
+  width: 20%;
+}
+
+.logo-human-report {
+  text-align: center;
+}
+
+.logo-human-report img {
+  margin-top: -3vh;
+  width: 60%;
+}
+
+.title-hire {
+  /* text-align: justify; */
+  font-weight: bold;
+  color: #ffffff;
+}
+p.hire {
+  font-size: 3.6vh;
+}
+
+p.hire-small {
+  margin-top: -2vh;
+  font-size: 2.5vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .component-logo {
+    display: none;
+  }
+}

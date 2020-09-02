@@ -5,16 +5,17 @@ import { Row, Col, Container, Form, Button } from "react-bootstrap";
 import LeftAuth from "../leftAuth/LeftAuth";
 
 // import css
-import "./login.css";
+import "./register.css";
 
 const initialState = {
+  firstName: "",
+  lastName: "",
   email: "",
   password: "",
-  emailError: false,
-  passwordError: false,
+  role: "",
 };
 
-class Login extends React.Component {
+class Register extends React.Component {
   state = initialState;
 
   handleChange = (event) => {
@@ -36,11 +37,37 @@ class Login extends React.Component {
         <div className="component-form">
           <Container>
             <Row className="no-gutters">
-              <Col md={12} className="title-login">
-                <p>Login</p>
+              <Col md={12} className="title-register">
+                <p>Register</p>
               </Col>
-              <Col md={12} className="form-login">
-                <Form onClick={this.handleSubmit}>
+              <Col md={12} className="form-register">
+                <Form>
+                  <Form.Group>
+                    <Form.Label className="font-weight-bold">
+                      First Name
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="firstName"
+                      placeholder="input first name..."
+                      required
+                      onChange={this.handleChange}
+                    />
+                  </Form.Group>
+
+                  <Form.Group>
+                    <Form.Label className="font-weight-bold">
+                      Last Name
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="lastName"
+                      placeholder="input last name..."
+                      required
+                      onChange={this.handleChange}
+                    />
+                  </Form.Group>
+
                   <Form.Group>
                     <Form.Label className="font-weight-bold">Email</Form.Label>
                     <Form.Control
@@ -63,10 +90,19 @@ class Login extends React.Component {
                       onChange={this.handleChange}
                     />
                   </Form.Group>
-                  <Form.Group>
-                    <p className="text-right font-weight-bold btn-forgot">
-                      Forgot Password ?
-                    </p>
+                  <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label className="font-weight-bold">
+                      Select Your Role
+                    </Form.Label>
+                    <Form.Control
+                      as="select"
+                      name="role"
+                      onChange={this.handleChange}
+                    >
+                      <option>Select..</option>
+                      <option>Enginer</option>
+                      <option>Corporation</option>
+                    </Form.Control>
                   </Form.Group>
                   <Button
                     variant="login"
@@ -74,8 +110,9 @@ class Login extends React.Component {
                     block
                     className="button-login"
                     type="submit"
+                    onClick={this.handleSubmit}
                   >
-                    Login
+                    Register
                   </Button>
                   <Button
                     variant="register"
@@ -83,7 +120,7 @@ class Login extends React.Component {
                     block
                     className="register"
                   >
-                    Register
+                    Already sign up? Login
                   </Button>
                 </Form>
               </Col>
@@ -95,4 +132,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Register;
