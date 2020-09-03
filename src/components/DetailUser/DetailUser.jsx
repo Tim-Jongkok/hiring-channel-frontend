@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-
+// components
+import ModalHistory from '../ModalHistory/ModalHistory';
+// img & css
 import './DetailUser.css';
-
 import profilImg from '../../assets/img/gambar.png';
 import starIcon from '../../assets/img/star.png';
 import checkIcon from '../../assets/img/check.png';
@@ -16,7 +17,22 @@ class DetailUser extends Component {
       description: "I worked more than 8 years in Software Industry. Widely recognized as the most comprehensive and rigorous full-stack developer in the country; I work as Virtual Interim CTO and Full Stack Lead developer, seeking for a new opportunities.",
       skill: "NodeJs, React, React Native, Binomo",
       image: profilImg,
-   }
+      // temp
+      showModalHistory: false,
+   };
+
+   handleShowModalHistory = () => {
+      this.setState({ showModalHistory: true })
+   };
+
+   handleCloseModalHistory = () => {
+      this.setState({ showModalHistory: false })
+   };
+
+   // const[show, setShow] = useState(false);
+   // const handleClose = () => setShow(false);
+   // const handleShow = () => setShow(true);
+
    render() {
       return (
          <>
@@ -81,7 +97,13 @@ class DetailUser extends Component {
                            <button type="button" className="btn btn-hire">Hire Me</button>
                         </div>
                         <div className="col-lg-2 text-center text-lg-left mb-2 ">
-                           <button type="button" className="btn btn-link btn-history"><h6>History</h6></button>
+                           <button
+                              type="button"
+                              className="btn btn-link btn-history"
+                              onClick={this.handleShowModalHistory}
+                           >
+                              <h6>History</h6>
+                           </button>
                         </div>
                         <div className="col-lg-auto ml-lg-auto text-center order-last mr-lg-5 mb-2">
                            <button type="button" className="btn btn-warning text-white">Edit</button>
@@ -93,6 +115,10 @@ class DetailUser extends Component {
                {/* End of Body */}
 
             </div>
+            <ModalHistory
+               showModalHistory={this.state.showModalHistory}
+               handleCloseModalHistory={this.handleCloseModalHistory}
+            />
          </>
       );
    }
