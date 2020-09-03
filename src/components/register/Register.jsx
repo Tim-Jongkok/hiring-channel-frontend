@@ -13,6 +13,11 @@ const initialState = {
   email: "",
   password: "",
   role: "",
+  firstNameError: "",
+  lastNameError: "",
+  emailError: "",
+  passwordError: "",
+  roleError: "",
 };
 
 class Register extends React.Component {
@@ -24,10 +29,63 @@ class Register extends React.Component {
     });
   };
 
+  validate = () => {
+    let firstNameError = "";
+    let lastNameError = "";
+    let emailError = "";
+    let passwordError = "";
+    let roleError = "";
+    // let passwordError = "";
+
+    if (!this.state.password) {
+      passwordError = "password cannot be blank";
+    }
+
+    if (!this.state.email.includes("@")) {
+      emailError = "invalid email";
+    }
+
+    if (!this.state.firstName) {
+      firstNameError = "first name cannot be blank";
+    }
+
+    if (!this.state.lastName) {
+      lastNameError = "last name cannot be blank";
+    }
+
+    if (!this.state.role) {
+      roleError = "role cannot be blank";
+    }
+
+    if (
+      emailError ||
+      passwordError ||
+      firstNameError ||
+      lastNameError ||
+      roleError
+    ) {
+      this.setState({
+        emailError,
+        passwordError,
+        firstNameError,
+        lastNameError,
+        roleError,
+      });
+      return false;
+    }
+
+    return true;
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(this.state);
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state);
+      // clear form
+      this.setState(initialState);
+    }
   };
 
   render() {
@@ -53,6 +111,10 @@ class Register extends React.Component {
                       required
                       onChange={this.handleChange}
                     />
+
+                    <Form.Text className="text-danger">
+                      {this.state.firstNameError}
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Group>
@@ -66,6 +128,10 @@ class Register extends React.Component {
                       required
                       onChange={this.handleChange}
                     />
+
+                    <Form.Text className="text-danger">
+                      {this.state.lastNameError}
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Group>
@@ -77,6 +143,10 @@ class Register extends React.Component {
                       required
                       onChange={this.handleChange}
                     />
+
+                    <Form.Text className="text-danger">
+                      {this.state.emailError}
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Group>
@@ -89,6 +159,10 @@ class Register extends React.Component {
                       placeholder="input password..."
                       onChange={this.handleChange}
                     />
+
+                    <Form.Text className="text-danger">
+                      {this.state.passwordError}
+                    </Form.Text>
                   </Form.Group>
                   <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label className="font-weight-bold">
@@ -103,6 +177,10 @@ class Register extends React.Component {
                       <option>Enginer</option>
                       <option>Corporation</option>
                     </Form.Control>
+
+                    <Form.Text className="text-danger">
+                      {this.state.roleError}
+                    </Form.Text>
                   </Form.Group>
                   <Button
                     variant="login"

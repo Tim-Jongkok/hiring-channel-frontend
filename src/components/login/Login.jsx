@@ -10,8 +10,8 @@ import "./login.css";
 const initialState = {
   email: "",
   password: "",
-  emailError: false,
-  passwordError: false,
+  emailError: "",
+  passwordError: "",
 };
 
 class Login extends React.Component {
@@ -23,10 +23,36 @@ class Login extends React.Component {
     });
   };
 
+  validate = () => {
+    let passwordError = "";
+    let emailError = "";
+    // let passwordError = "";
+
+    if (!this.state.password) {
+      passwordError = "password cannot be blank";
+    }
+
+    if (!this.state.email.includes("@")) {
+      emailError = "invalid email";
+    }
+
+    if (emailError || passwordError) {
+      this.setState({ emailError, passwordError });
+      return false;
+    }
+
+    return true;
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(this.state);
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state);
+      // clear form
+      this.setState(initialState);
+    }
   };
 
   render() {
@@ -40,16 +66,19 @@ class Login extends React.Component {
                 <p>Login</p>
               </Col>
               <Col md={12} className="form-login">
-                <Form onClick={this.handleSubmit}>
+                <Form>
                   <Form.Group>
                     <Form.Label className="font-weight-bold">Email</Form.Label>
                     <Form.Control
                       type="text"
                       name="email"
                       placeholder="input email..."
-                      required
+                      value={this.state.email}
                       onChange={this.handleChange}
                     />
+                    <Form.Text className="text-danger">
+                      {this.state.emailError}
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Group>
@@ -60,8 +89,12 @@ class Login extends React.Component {
                       type="password"
                       name="password"
                       placeholder="input password..."
+                      value={this.state.password}
                       onChange={this.handleChange}
                     />
+                    <Form.Text className="text-danger">
+                      {this.state.passwordError}
+                    </Form.Text>
                   </Form.Group>
                   <Form.Group>
                     <p className="text-right font-weight-bold btn-forgot">
@@ -74,6 +107,7 @@ class Login extends React.Component {
                     block
                     className="button-login"
                     type="submit"
+                    onClick={this.handleSubmit}
                   >
                     Login
                   </Button>
