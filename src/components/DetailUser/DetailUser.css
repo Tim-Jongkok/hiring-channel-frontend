@@ -4,12 +4,18 @@
 
 .body-content {
     position: absolute;
-    top: 25vh;
+    top: 200px;
 }
 
 .profil-pict {
     width: 250px;
-    height: 45vh;
+    height: 350px;
+    margin: 0 auto;
+}
+
+.profil-pict img {
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
     object-fit: cover;
 }
@@ -26,13 +32,28 @@
 .btn-hire {
     background-color: #AB84C8;
     color: #FFF;
-    width: 80%;
+    width: 170px;
 }
 
 /* DESKTOP */
 
 @media only screen and (min-width: 992px) {
     .profil-pict {
+        max-width: 250px;
+        max-height: 305px;
         width: 100%;
+        height: 100%;
+    }
+    .profil-pict img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        object-fit: cover;
+    }
+    .btn-hire-parent {
+        /* margin-top: 15vh; */
+    }
+    .skill-parent {
+        margin-top: 10vh;
     }
 }
