@@ -383,10 +383,9 @@ const UserCardContainer = (props) => {
         hasMore={false}
         loader={<Loading/>}
         endMessage={
-          // <p style={{ textAlign: "center" }}>
-          //   <b>Yay! You have seen it all</b>
-          // </p>
-          <Loading/>
+          <p style={{ textAlign: "center" }}>
+            <b>Yay! You have seen it all</b>
+          </p>
         }
       >
         <div className="row no-gutters">
