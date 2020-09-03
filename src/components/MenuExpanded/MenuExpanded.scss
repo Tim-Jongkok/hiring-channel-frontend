@@ -10,7 +10,7 @@
   right: 0;
   height: 90vh;
   top: 10vh;
-  padding: 70px 0 30px 0;
+  padding: 40px 0 30px 0;
   z-index: 10;
 }
 
@@ -46,9 +46,10 @@
 
 .message-menu {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0 auto;
   height: 80px;
+  width:200px;
 }
 
 .message-menu h5 {
@@ -59,7 +60,7 @@
 .message-icon {
   width: 40px;
   height: 100%;
-  margin: auto;
+  margin: 0 10px 0 10px;
 }
 
 .message-icon img {
@@ -72,9 +73,10 @@
 
 .notification-menu {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0 auto;
   height: 80px;
+  width:200px;
 }
 
 .notification-menu h5 {
@@ -85,7 +87,7 @@
 .notification-icon {
   width: 40px;
   height: 100%;
-  margin: auto;
+  margin: 0 8px 0 8px;
 }
 
 .notification-icon img {
