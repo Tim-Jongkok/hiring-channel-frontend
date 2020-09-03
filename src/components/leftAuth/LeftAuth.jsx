@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 // import img
-import logoArka from "../../assets/arkademy.png";
-import humanReport from "../../assets/human-report.png";
+import logoArka from "../../assets/img/arkademy.png";
+import humanReport from "../../assets/img/human-report.png";
 
 import "./leftAuth.css";
 
