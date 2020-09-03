@@ -35,6 +35,10 @@
     width: 170px;
 }
 
+.btn-history {
+    color: #AB84C8;
+}
+
 /* DESKTOP */
 
 @media only screen and (min-width: 992px) {
@@ -50,9 +54,9 @@
         border-radius: 20px;
         object-fit: cover;
     }
-    .btn-hire-parent {
-        /* margin-top: 15vh; */
-    }
+    /* .btn-hire-parent {
+        margin-top: 15vh;
+    } */
     .skill-parent {
         margin-top: 10vh;
     }

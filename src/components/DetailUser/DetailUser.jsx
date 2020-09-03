@@ -49,10 +49,10 @@ class DetailUser extends Component {
                         </div>
                         <div className="row no-gutters mt-lg-5">
                            <div className="col px-3 px-lg-0">
-                              <div className="">
-                                 <p className="text-justify">I worked more than 8 years in Software Industry. Widely recognized as the most comprehensive and rigorous full-stack developer in the country;<br /> <br />
+                              <div className="text-justify">
+                                 <p>I worked more than 8 years in Software Industry. Widely recognized as the most comprehensive and rigorous full-stack developer in the country;<br /> <br />
                                  I work as Virtual Interim CTO and Full Stack Lead developer, seeking for a new opportunities.</p>
-                                 <p className="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati doloremque aliquam praesentium aspernatur recusandae quaerat optio nisi ipsam eveniet similique, facere quae repellendus, quia officiis? Sint, excepturi? Architecto, nemo consequatur.</p>
+                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati doloremque aliquam praesentium aspernatur recusandae quaerat optio nisi ipsam eveniet similique, facere quae repellendus, quia officiis? Sint, excepturi? Architecto, nemo consequatur.</p>
                               </div>
                            </div>
                         </div>
@@ -67,8 +67,14 @@ class DetailUser extends Component {
 
                   </div>
                   <div className="row no-gutters ml-lg-5 mb-5 mb-lg-0 mt-3 mt-lg-0 btn-hire-parent">
-                     <div className="col-lg-2 text-center">
+                     <div className="col-lg-2 order-lg-first order-2 text-center mb-2">
                         <button type="button" className="btn btn-hire">Hire Me</button>
+                     </div>
+                     <div className="col-lg-2 text-center text-lg-left ml-lg-2 mb-2">
+                        <button type="button" className="btn btn-link btn-history"><h6>History</h6></button>
+                     </div>
+                     <div className="col-lg-auto ml-lg-auto text-center order-last mr-lg-5 mb-2">
+                        <button type="button" className="btn btn-light">Edit</button>
                      </div>
                   </div>
                </div>
