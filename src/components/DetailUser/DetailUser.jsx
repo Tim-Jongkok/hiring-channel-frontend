@@ -9,14 +9,22 @@ import checkIcon from '../../assets/img/check.png';
 
 class DetailUser extends Component {
    state = {
-      firstName: "Budi",
-      lastName: "Ramadhan",
-      field: "Frontend Developer",
-      rate: 97,
-      project: 47,
-      description: "I worked more than 8 years in Software Industry. Widely recognized as the most comprehensive and rigorous full-stack developer in the country; I work as Virtual Interim CTO and Full Stack Lead developer, seeking for a new opportunities.",
-      skill: "NodeJs, React, React Native, Binomo",
-      image: profilImg,
+      // profile for page
+      profile: {
+         id: 1,
+         firstName: "Budi",
+         lastName: "Ramadhan",
+         field: "Frontend Developer",
+         rate: 97,
+         project: 47,
+         description: "I worked more than 8 years in Software Industry. Widely recognized as the most comprehensive and rigorous full-stack developer in the country; I work as Virtual Interim CTO and Full Stack Lead developer, seeking for a new opportunities.",
+         skill: "NodeJs, React, React Native, Binomo",
+         image: profilImg,
+      },
+      // current user
+      user: {
+         id: 1,
+      },
       // temp
       showModalHistory: false,
    };
@@ -54,11 +62,11 @@ class DetailUser extends Component {
                         <div className="row no-gutters">
                            <div className="col text-center text-lg-left">
                               <div className="profil-pict">
-                                 <img src={this.state.image} alt={`gambar ${this.state.firstName}${this.state.lastName}`} />
+                                 <img src={this.state.profile.image} alt={`gambar ${this.state.profile.firstName}${this.state.profile.lastName}`} />
                               </div>
-                              <h5>@{(`${this.state.firstName}${this.state.lastName}`).toLowerCase()}</h5>
-                              <p><img src={starIcon} alt="" className="small-icon" /> {this.state.rate}% Success Rate</p>
-                              <p><img src={checkIcon} alt="" className="small-icon" /> {this.state.project} Project</p>
+                              <h5>@{(`${this.state.profile.firstName}${this.state.profile.lastName}`).toLowerCase()}</h5>
+                              <p><img src={starIcon} alt="" className="small-icon" /> {this.state.profile.rate}% Success Rate</p>
+                              <p><img src={checkIcon} alt="" className="small-icon" /> {this.state.profile.project} Project</p>
                            </div>
                         </div>
                      </div>
@@ -68,14 +76,14 @@ class DetailUser extends Component {
                      <div className="col-12 col-lg-9 px-lg-4 mt-lg-4 ">
                         <div className="row no-gutters mb-3 mt-lg-5">
                            <div className="col text-center text-lg-left">
-                              <h2>{this.state.firstName}&nbsp;{this.state.lastName}</h2>
-                              <h5>{this.state.field}</h5>
+                              <h2>{this.state.profile.firstName}&nbsp;{this.state.profile.lastName}</h2>
+                              <h5>{this.state.profile.field}</h5>
                            </div>
                         </div>
                         <div className="row no-gutters mt-lg-5">
                            <div className="col px-3 px-lg-0">
                               <div className="text-justify">
-                                 <p>{this.state.description}</p>
+                                 <p>{this.state.profile.description}</p>
                               </div>
                            </div>
                         </div>
@@ -89,12 +97,16 @@ class DetailUser extends Component {
                      <div className="row no-gutters ml-lg-5 px-lg-4">
                         <div className="col offset-lg-2 text-center text-lg-left ">
                            <h6>Skills : </h6>
-                           <h6>{this.state.skill}</h6>
+                           <h6>{this.state.profile.skill}</h6>
                         </div>
                      </div>
                      <div className="row no-gutters mb-5 mb-lg-0 mt-3">
                         <div className="col-lg-2 ml-lg-5 order-lg-first order-2 text-center mb-2">
-                           <button type="button" className="btn btn-hire">Hire Me</button>
+                           {this.state.profile.id !== this.state.user.id ? (
+                              <button type="button" className="btn btn-hire">Hire Me</button>
+                           ) : (
+                                 <button type="button" className="btn btn-hire">Edit</button>
+                              )}
                         </div>
                         <div className="col-lg-2 text-center text-lg-left mb-2 ">
                            <button
@@ -105,9 +117,11 @@ class DetailUser extends Component {
                               <h6>History</h6>
                            </button>
                         </div>
-                        <div className="col-lg-auto ml-lg-auto text-center order-last mr-lg-5 mb-2">
-                           <button type="button" className="btn btn-warning text-white">Edit</button>
-                        </div>
+                        {/* <div className="col-lg-auto ml-lg-auto text-center order-last mr-lg-5 mb-2">
+                           {this.state.profile.id === this.state.user.id ? (
+                              <button type="button" className="btn btn-warning text-white">Edit</button>
+                           ) : ("")}
+                        </div> */}
                      </div>
                   </div>
 
