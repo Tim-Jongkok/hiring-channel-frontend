@@ -13,9 +13,9 @@
   font-weight: bold;
 }
 
-.form-register {
+/* .form-register {
   margin-top: 5vh;
-}
+} */
 
 .form-register input[type="text"],
 input[type="password"] {
@@ -40,12 +40,12 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
-.button-login {
+.button-register {
   margin-top: 10vh;
   margin-bottom: 5vh;
 }
 
-.register {
+.login {
   margin-top: 19vh;
 }
 

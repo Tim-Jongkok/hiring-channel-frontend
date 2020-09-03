@@ -186,18 +186,13 @@ class Register extends React.Component {
                     variant="login"
                     size="lg"
                     block
-                    className="button-login"
+                    className="button-register"
                     type="submit"
                     onClick={this.handleSubmit}
                   >
                     Register
                   </Button>
-                  <Button
-                    variant="register"
-                    size="lg"
-                    block
-                    className="register"
-                  >
+                  <Button variant="register" size="lg" block className="login">
                     Already sign up? Login
                   </Button>
                 </Form>
