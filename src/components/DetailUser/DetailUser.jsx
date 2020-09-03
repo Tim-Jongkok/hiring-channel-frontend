@@ -74,7 +74,7 @@ class DetailUser extends Component {
                         <button type="button" className="btn btn-link btn-history"><h6>History</h6></button>
                      </div>
                      <div className="col-lg-auto ml-lg-auto text-center order-last mr-lg-5 mb-2">
-                        <button type="button" className="btn btn-light">Edit</button>
+                        <button type="button" className="btn btn-warning text-white">Edit</button>
                      </div>
                   </div>
                </div>

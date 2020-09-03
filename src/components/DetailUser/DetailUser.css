@@ -39,6 +39,11 @@
     color: #AB84C8;
 }
 
+.btn-edit {
+    color: #AB84C8;
+    border-color: #AB84C8;
+}
+
 /* DESKTOP */
 
 @media only screen and (min-width: 992px) {
