@@ -29,6 +29,13 @@
     height: 350px;
 }
 
+.top-jumbotron img {
+    position: absolute;
+    width: 30px;
+    top: 20px;
+    left: 20px;
+}
+
 .small-icon {
     width: 20px;
 }

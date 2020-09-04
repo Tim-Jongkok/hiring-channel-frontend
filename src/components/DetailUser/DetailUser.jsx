@@ -6,6 +6,7 @@ import './DetailUser.css';
 import profilImg from '../../assets/img/gambar.png';
 import starIcon from '../../assets/img/star.png';
 import checkIcon from '../../assets/img/check.png';
+import arrowIcon from '../../assets/img/Arrow.png'
 
 class DetailUser extends Component {
    state = {
@@ -49,6 +50,7 @@ class DetailUser extends Component {
                <div className="row no-gutters">
                   <div className="col">
                      <div className="top-jumbotron">
+                        <img src={arrowIcon} alt="" />
                      </div>
                   </div>
                </div>
@@ -117,11 +119,6 @@ class DetailUser extends Component {
                               <h6>History</h6>
                            </button>
                         </div>
-                        {/* <div className="col-lg-auto ml-lg-auto text-center order-last mr-lg-5 mb-2">
-                           {this.state.profile.id === this.state.user.id ? (
-                              <button type="button" className="btn btn-warning text-white">Edit</button>
-                           ) : ("")}
-                        </div> */}
                      </div>
                   </div>
 
