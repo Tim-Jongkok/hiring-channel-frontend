@@ -49,6 +49,14 @@ class Register extends React.Component {
       passwordError = "password cannot be blank";
     }
 
+    const stringPassword = this.state.password;
+    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+
+    if (!reg.test(stringPassword)) {
+      passwordError =
+        "password must be include lowerCase, upperCase, numbers and minimum 8 characters";
+    }
+
     if (!this.state.email.includes("@")) {
       emailError = "invalid email";
     }

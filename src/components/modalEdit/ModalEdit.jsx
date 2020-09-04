@@ -5,7 +5,7 @@ import "./modalEdit.css";
 
 const initialState = {
   show: true,
-  enginers: false,
+  enginers: true,
   corporateName: "",
   firstName: "",
   lastName: "",
@@ -120,27 +120,22 @@ class ModalEdit extends React.Component {
                     </Fragment>
                   ) : null}
 
-                  {!this.state.enginers ? (
-                    <Fragment>
-                      {" "}
-                      <Col md={12} xs={12}>
-                        <Form.Group>
-                          <Form.Label className="font-weight-bold">
-                            Location
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="location"
-                            placeholder="input your location..."
-                            onChange={this.handleChange}
-                          />
-                          <Form.Text className="text-danger">
-                            {/* {this.state.emailError} */}
-                          </Form.Text>
-                        </Form.Group>
-                      </Col>
-                    </Fragment>
-                  ) : null}
+                  <Col md={12} xs={12}>
+                    <Form.Group>
+                      <Form.Label className="font-weight-bold">
+                        Location
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="location"
+                        placeholder="input your location..."
+                        onChange={this.handleChange}
+                      />
+                      <Form.Text className="text-danger">
+                        {/* {this.state.emailError} */}
+                      </Form.Text>
+                    </Form.Group>
+                  </Col>
 
                   {this.state.enginers ? (
                     <Fragment>
