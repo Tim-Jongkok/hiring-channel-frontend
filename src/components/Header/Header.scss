@@ -6,7 +6,7 @@ header {
   background: #ffffff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   z-index: 100;
-  top:0;
+  top: 0;
 }
 
 .logo {
@@ -69,22 +69,25 @@ input[name="search"]:focus {
   outline: none !important;
 }
 
-label[name="filter"]{
-  height:60%;
-  width:10%;
-  min-width:50px;
-  text-align:center;
+select[name="filter"] {
+  height: 60%;
+  width: 10%;
+  min-width: 62px;
+  text-align: center;
   align-self: center;
   color: #534e4e;
-  margin:0 10px;
+  margin: 0 10px;
   vertical-align: middle;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   border-width: 0 0 0 1px;
-  border-style:solid;
-  border-color:#9b9b9b;
+  border-style: solid;
+  border-color: #9b9b9b;
 }
 
+select[name="filter"]:focus {
+  outline: none;
+}
 .menu-icon {
   width: 15%;
   height: 100%;
@@ -111,16 +114,21 @@ label[name="filter"]{
   font-weight: bold;
 }
 
+.home-button:focus {
+  outline: none;
+}
+
 .user-group {
   width: 15%;
-  height:50%;
+  height: 50%;
   display: none;
   margin: auto auto;
 }
 
 .user-group p {
   height: 100%;
-  width:100%;
+  width: 100%;
+  max-width:93px;
   vertical-align: middle;
   text-align: center;
   margin: 0 0 0 5px;
@@ -128,6 +136,9 @@ label[name="filter"]{
   color: #9b9b9b;
   font-weight: bold;
   line-height: 4.25rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .user-icon {
@@ -139,8 +150,8 @@ label[name="filter"]{
 }
 
 .user-icon img {
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 50%;
 }

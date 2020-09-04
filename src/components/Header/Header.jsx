@@ -44,14 +44,15 @@ const Header = (props) => {
             placeholder="Search"
             onKeyPress={handleSearch}
           />
-          <label
+          <select
             name="filter"
-            onClick={() => {
-              filterModalRef.current.handleShow();
-            }}
           >
-            Sort
-          </label>
+            <option value="none" selected disabled hidden> 
+            Sort</option>  
+            <option value="name">Name</option>
+            <option value="rating">Rating</option>
+            <option value="total_project">Project</option>
+          </select>
         </div>
         <div className="menu-icon" onClick={onClickHandler}>
           <img src={menu_icon} alt="" />
@@ -59,11 +60,10 @@ const Header = (props) => {
         <button className="home-button">Home</button>
         <div className="user-group">
           <div className="user-icon">
-            {/* <p>T</p> */}
             <img src={user_icon} alt="" />
           </div>
           <div id="name">
-            <p>Taufiq Widi</p>
+            <p>Taufiq Widi Nugroho</p>
           </div>
         </div>
         <div className="icon-group">
