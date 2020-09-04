@@ -6,20 +6,15 @@ import bell_icon from "../../assets/img/bell.png";
 import menu_icon from "../../assets/img/menu.webp";
 import user_icon from "../../assets/img/user.jpg";
 import MenuExpanded from "../MenuExpanded/MenuExpanded";
-import FilterModal from "../FilterModal/FilterModal";
 import "./Header.css";
 
 const Header = (props) => {
   const [menuDisplayed, setDisplayMenu] = useState(false);
-  const filterModalRef = useRef();
+  const [sort, setSort] = useState("name");
 
   const onClickHandler = useCallback(() => {
     setDisplayMenu(!menuDisplayed);
   }, [menuDisplayed]);
-
-  const getSort = (sort)=>{
-    console.log(sort);
-  }
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
@@ -29,7 +24,6 @@ const Header = (props) => {
 
   return (
     <>
-      <FilterModal ref={filterModalRef} onSort={getSort}/>
       <header>
         <div className="logo">
           <img src={logo} alt="" />
@@ -44,11 +38,10 @@ const Header = (props) => {
             placeholder="Search"
             onKeyPress={handleSearch}
           />
-          <select
-            name="filter"
-          >
-            <option value="none" selected disabled hidden> 
-            Sort</option>  
+          <select defaultValue="name" name="filter" onChange={(e)=>{setSort(e.target.value);}}>
+            <option value="none" disabled hidden>
+              Sort
+            </option>
             <option value="name">Name</option>
             <option value="rating">Rating</option>
             <option value="total_project">Project</option>

@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import useWindowDimensions from "../../hooks/viewportHooks";
 import Loading from "../Loading/Loading";
 import { users } from "./DummyData";
+import {Spinner} from "react-bootstrap";
 import Axios from "axios";
 import queryString from "query-string";
 
