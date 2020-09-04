@@ -12,10 +12,8 @@ const UserCard = ({ user, ...rest }) => {
     height: 0,
     width: 0,
   };
-  style.height = Math.round(Math.random() * 300) + 100;
-  style.width = Math.round(Math.random() * 100) + 100;
-  style.height = style.height.toString() + "px";
-  style.width = style.width.toString() + "px";
+  style.height = (Math.round(Math.random() * 300) + 100).toString() + "px";
+  style.width = (Math.round(Math.random() * 100) + 100).toString() + "px";
   return (
     <>
       <div className="row no-gutters justify-content-center">

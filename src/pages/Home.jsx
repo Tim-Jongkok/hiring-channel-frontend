@@ -8,7 +8,7 @@ const Home = (props) => {
     <>
       <Header {...props}/>
       <div className="main-container">
-        <UserCardContainer props={props}/>
+        <UserCardContainer key={1} {...props}/>
       </div>
     </>
   );

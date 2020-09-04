@@ -4,7 +4,6 @@ import "./UserCardContainer.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useWindowDimensions from "../../hooks/viewportHooks";
 import Loading from "../Loading/Loading";
-import SkeletonUserCard from "../Loading/SkeletonUserCard";
 import { users } from "./DummyData";
 import Axios from "axios";
 import queryString from "query-string";
@@ -34,7 +33,18 @@ const calculateColumn = (width) => {
   return column;
 };
 
-const UserCardContainer = ({ props, ...rest }) => {
+//render userCard
+const renderUserCard = (users,props) => {
+  return (
+    <div className="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+      {users.map((user) => {
+        return <UserCard key={user.id} user={user} {...props} />;
+      })}
+    </div>
+  );
+};
+
+const UserCardContainer = (props) => {
   const [page, setPage] = useState(1);
   const [hasMoreData, setHasMoreData] = useState(true);
   const [userDummy, setUserDummy] = useState([]);
@@ -49,6 +59,7 @@ const UserCardContainer = ({ props, ...rest }) => {
     path = `http://localhost:2300/users/search?search=${params.search}&page=${page}&limit=${limit}`;
   }
   const seperatedUsers = separateIt(userDummy, userDummy.length / column);
+
   const handleFetch = () => {
     Axios.get(path)
       .then((data) => {
@@ -76,16 +87,6 @@ const UserCardContainer = ({ props, ...rest }) => {
   useEffect(() => {
     handleFetch();
   }, []);
-
-  const renderUserCard = (users) => {
-    return (
-      <div className="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-        {users.map((user) => {
-          return <UserCard key={user.id} user={user} {...props} />;
-        })}
-      </div>
-    );
-  };
   return (
     <>
       <InfiniteScroll
@@ -102,7 +103,7 @@ const UserCardContainer = ({ props, ...rest }) => {
       >
         <div className="row no-gutters">
           {seperatedUsers.map((seperatedUser) => {
-            return renderUserCard(seperatedUser);
+            return renderUserCard(seperatedUser,props);
           })}
         </div>
       </InfiniteScroll>

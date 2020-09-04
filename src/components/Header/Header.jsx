@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import logo from "../../assets/img/logo.png";
 import search_icon from "../../assets/img/search.png";
 import chat_icon from "../../assets/img/chat.png";
@@ -6,20 +6,30 @@ import bell_icon from "../../assets/img/bell.png";
 import menu_icon from "../../assets/img/menu.webp";
 import user_icon from "../../assets/img/user.jpg";
 import MenuExpanded from "../MenuExpanded/MenuExpanded";
+import FilterModal from "../FilterModal/FilterModal";
 import "./Header.css";
 
 const Header = (props) => {
   const [menuDisplayed, setDisplayMenu] = useState(false);
-  const onClickHandle = () => {
+  const filterModalRef = useRef();
+
+  const onClickHandler = useCallback(() => {
     setDisplayMenu(!menuDisplayed);
-  };
+  }, [menuDisplayed]);
+
+  const getSort = (sort)=>{
+    console.log(sort);
+  }
+
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       props.history.push(`/?search=${e.target.value}`);
     }
   };
+
   return (
     <>
+      <FilterModal ref={filterModalRef} onSort={getSort}/>
       <header>
         <div className="logo">
           <img src={logo} alt="" />
@@ -34,8 +44,16 @@ const Header = (props) => {
             placeholder="Search"
             onKeyPress={handleSearch}
           />
+          <label
+            name="filter"
+            onClick={() => {
+              filterModalRef.current.handleShow();
+            }}
+          >
+            Sort
+          </label>
         </div>
-        <div className="menu-icon" onClick={onClickHandle}>
+        <div className="menu-icon" onClick={onClickHandler}>
           <img src={menu_icon} alt="" />
         </div>
         <button className="home-button">Home</button>

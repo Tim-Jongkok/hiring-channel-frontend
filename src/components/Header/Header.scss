@@ -52,7 +52,7 @@ header {
 }
 
 input[name="search"] {
-  width: 80%;
+  width: 90%;
   height: 60%;
   align-self: center;
   vertical-align: middle;
@@ -67,6 +67,22 @@ input[name="search"] {
 
 input[name="search"]:focus {
   outline: none !important;
+}
+
+label[name="filter"]{
+  height:60%;
+  width:10%;
+  min-width:50px;
+  text-align:center;
+  align-self: center;
+  color: #534e4e;
+  margin:0 10px;
+  vertical-align: middle;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-width: 0 0 0 1px;
+  border-style:solid;
+  border-color:#9b9b9b;
 }
 
 .menu-icon {
@@ -212,8 +228,8 @@ input[name="search"]:focus {
   }
 }
 
-@media all and (min-width: 576px) {
-  .search-group {
-    width: calc(100%- (180px + 59.56px));
-  }
-}
+// @media all and (min-width: 576px) {
+//   .search-group {
+//     width: calc(100%- (180px + 59.56px));
+//   }
+// }
