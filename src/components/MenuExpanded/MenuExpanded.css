@@ -39,6 +39,14 @@
   background: #9b9b9b;
 }
 
+.user-icon-menu img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .user-icon-menu p {
   height: 100%;
   width: 100%;
@@ -51,7 +59,7 @@
 }
 
 .user-group-menu h5 {
-  font-size: 4rem;
+  font-size: 3rem;
   margin: 10px auto 0 auto;
 }
 

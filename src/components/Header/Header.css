@@ -70,7 +70,7 @@ input[name="search"] {
       align-self: center;
   vertical-align: middle;
   border-width: 0px;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   background: #dadada;
   color: #9b9b9b;
   font-weight: bold;
@@ -106,42 +106,43 @@ input[name="search"]:focus {
   background-color: rgba(0, 0, 0, 0);
   vertical-align: middle;
   font-size: 2rem;
-  margin: auto;
+  margin: auto auto auto auto;
   font-weight: bold;
 }
 
 .user-group {
   width: 15%;
+  height: 50%;
   display: none;
-  margin: auto;
+  margin: auto auto;
 }
 
 .user-group p {
   height: 100%;
+  width: 100%;
   vertical-align: middle;
   text-align: center;
-  margin: 0 10px;
-  font-size: 2rem;
+  margin: 0 0 0 5px;
+  font-size: 1.75rem;
   color: #9b9b9b;
   font-weight: bold;
-  line-height: 4rem;
+  line-height: 4.25rem;
 }
 
 .user-icon {
   width: 40px;
   height: 40px;
+  margin: auto 0;
   border-radius: 50%;
   background: #9b9b9b;
 }
 
-.user-group .user-icon p {
-  margin: auto;
+.user-icon img {
   width: 100%;
   height: 100%;
-  font-weight: bold;
-  color: white;
-  vertical-align: middle;
-  line-height: 4rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
 }
 
 .icon-group {
@@ -212,6 +213,9 @@ input[name="search"]:focus {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .icon-group {
     display: -webkit-box;

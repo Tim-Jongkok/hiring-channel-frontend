@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import check_icon from "../../assets/img/check.png";
 import star_icon from "../../assets/img/star.png";
 import "./UserCard.css";
+import { useSpring, animated } from "react-spring";
 
 const UserCard = ({ user, ...rest }) => {
-  let style = {};
+  const handleOnClick = () => {
+    rest.history.push(`/users/${user.id}`);
+  };
+  const style = {
+    height: 0,
+    width: 0,
+  };
   style.height = Math.round(Math.random() * 300) + 100;
   style.width = Math.round(Math.random() * 100) + 100;
   style.height = style.height.toString() + "px";
@@ -17,7 +24,9 @@ const UserCard = ({ user, ...rest }) => {
             <img src={user.image} alt="" />
           </div>
           <div className="card-text">
-            <h5>{user.name}</h5>
+            <h5>
+              {user.first_name} {user.last_name}
+            </h5>
             <p>{user.field}</p>
             <div className="rating-project-container">
               <div className="project">

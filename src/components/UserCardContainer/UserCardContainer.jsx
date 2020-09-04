@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import UserCard from "../UserCard/UserCard";
 import "./UserCardContainer.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useWindowDimensions from "../../hooks/viewportHooks";
 import Loading from "../Loading/Loading";
-import {users} from "./DummyData";
+import SkeletonUserCard from "../Loading/SkeletonUserCard";
+import { users } from "./DummyData";
+import Axios from "axios";
+import queryString from "query-string";
 
 //function to separate array
 const separateIt = (arr, size) => {
-  var newArr = [];
-  for (var i = 0; i < arr.length; i += size) {
-    var sliceIt = arr.slice(i, i + size);
+  let newArr = [];
+  for (let i = 0; i < arr.length; i += size) {
+    let sliceIt = arr.slice(i, i + size);
     newArr.push(sliceIt);
   }
   return newArr;
@@ -31,32 +34,68 @@ const calculateColumn = (width) => {
   return column;
 };
 
-const UserCardContainer = (props) => {
-  const { height, width } = useWindowDimensions();
+const UserCardContainer = ({ props, ...rest }) => {
+  const [page, setPage] = useState(1);
+  const [hasMoreData, setHasMoreData] = useState(true);
+  const [userDummy, setUserDummy] = useState([]);
+  const { height,width } = useWindowDimensions();
   let column = calculateColumn(width);
-  const seperatedUsers = separateIt(users, users.length / column);
+  const limit = Math.round(height/106)+column;
+  let path = "";
+  let params = queryString.parse(props.location.search);
+  if (params.search === undefined) {
+    path = `http://localhost:2300/users?page=${page}&limit=${limit}`;
+  } else {
+    path = `http://localhost:2300/users/search?search=${params.search}&page=${page}&limit=${limit}`;
+  }
+  const seperatedUsers = separateIt(userDummy, userDummy.length / column);
+  const handleFetch = () => {
+    Axios.get(path)
+      .then((data) => {
+        if (data.data.data.length === 0) {
+          setHasMoreData(false);
+        } else {
+          setHasMoreData(true);
+          let newArr = [];
+          let _page = page;
+          newArr = [...userDummy];
+          newArr.push(...data.data.data);
+          setUserDummy(newArr);
+          _page++;
+          setPage(_page);
+          props.history.push(
+            props.location.pathname + `?page=${page}&limit=${limit}`
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    handleFetch();
+  }, []);
 
   const renderUserCard = (users) => {
     return (
       <div className="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
         {users.map((user) => {
-          return <UserCard key={user.id} user={user} />;
+          return <UserCard key={user.id} user={user} {...props} />;
         })}
       </div>
     );
   };
-
   return (
     <>
       <InfiniteScroll
-        dataLength={users.length}
-        next={() => {
-          console.log("fetching");
-        }}
-        hasMore={false}
-        loader={<Loading/>}
+        scrollableTarget={document.getElementsByClassName("main-container")}
+        dataLength={userDummy.length}
+        next={handleFetch}
+        hasMore={hasMoreData}
+        loader={<Loading />}
         endMessage={
-          <p style={{ textAlign: "center" }}>
+          <p style={{ textAlign: "center",fontSize:"1.75rem" }}>
             <b>Yay! You have seen it all</b>
           </p>
         }

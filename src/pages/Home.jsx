@@ -3,12 +3,12 @@ import Header from "../components/Header/Header";
 import UserCardContainer from "../components/UserCardContainer/UserCardContainer";
 import "./Home.css";
 
-const Home = () => {
+const Home = (props) => {
   return (
     <>
-      <Header />
+      <Header {...props}/>
       <div className="main-container">
-        <UserCardContainer />
+        <UserCardContainer props={props}/>
       </div>
     </>
   );
