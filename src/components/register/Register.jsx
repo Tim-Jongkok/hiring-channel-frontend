@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
+import Axios from "axios";
 
 // import component
 import LeftAuth from "../leftAuth/LeftAuth";
@@ -108,11 +109,35 @@ class Register extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
+    const data = {
+      first_name: this.state.firstName,
+      last_name: this.state.lastName,
+      corporate_name: this.state.corporateName,
+      type_id: Number(this.state.role),
+      email: this.state.email,
+      password: this.state.password,
+    };
+
     const isValid = this.validate();
+
     if (isValid) {
-      console.log(this.state);
-      // clear form
-      this.setState(initialState);
+      // console.log(data);
+      const Qs = "http://localhost:8000/auth/register";
+      Axios.post(Qs, data)
+        .then((res) => {
+          if (res.data.success === false) {
+            this.setState({
+              emailError: "email is ready",
+            });
+          } else {
+            console.log(res.data.data);
+            // clear form
+            this.setState(initialState);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -127,7 +152,7 @@ class Register extends React.Component {
                 <p>Register</p>
               </Col>
               <Col md={12} className="form-register">
-                <Form>
+                <Form className="form-register">
                   <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label className="font-weight-bold">
                       Select Your Role
@@ -136,6 +161,7 @@ class Register extends React.Component {
                       as="select"
                       name="role"
                       value={this.state.role}
+                      className="custom-select"
                       onChange={(event) => {
                         if (event.target.value === "2") {
                           this.setState({

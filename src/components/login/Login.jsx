@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
+import Axios from "axios";
 
 // import component
 import LeftAuth from "../leftAuth/LeftAuth";
@@ -47,11 +48,31 @@ class Login extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
+    const data = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+
     const isValid = this.validate();
     if (isValid) {
-      console.log(this.state);
+      const Qs = "http://localhost:8000/auth/login";
+      Axios.post(Qs, data)
+        .then((res) => {
+          if (res.data.success === false) {
+            this.setState({
+              passwordError: "username or password is wrong..!",
+            });
+          } else {
+            console.log(res.data.data);
+            // clear form
+            this.setState(initialState);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       // clear form
-      this.setState(initialState);
+      // this.setState(initialState);
     }
   };
 

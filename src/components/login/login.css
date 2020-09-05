@@ -14,7 +14,7 @@
 }
 
 .form-login {
-  margin-top: 15vh;
+  margin-top: 10vh;
 }
 
 .form-login input[type="text"],
@@ -47,6 +47,24 @@ input[type="password"] {
 
 .register {
   margin-top: 19vh;
+}
+
+.form-login {
+  font-size: 2vh;
+}
+
+.form-login input[type="text"],
+input[type="password"] {
+  font-size: 2vh;
+}
+
+.custom-select {
+  font-size: 2vh;
+}
+
+.form-login button {
+  font-size: 2vh;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 600px) {

@@ -11,7 +11,7 @@ const LeftAuth = () => {
     <>
       <div className="component-logo">
         <Container>
-          <Row>
+          <Row className="no-gutters">
             <Col md={12} className="logo-arka">
               <img src={logoArka} alt="logo-arka" />
             </Col>
@@ -19,7 +19,7 @@ const LeftAuth = () => {
               <img src={humanReport} alt="logo-human-report" />
             </Col>
             <Col md={12} className="title-hire">
-              <Row>
+              <Row className="no-gutters">
                 <Col md={2}></Col>
                 <Col md={8}>
                   <p className="hire">

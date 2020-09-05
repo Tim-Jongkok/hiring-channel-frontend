@@ -11,6 +11,7 @@
 .title-register p {
   font-size: 5vh;
   font-weight: bold;
+  margin-bottom: 10vh;
 }
 
 /* .form-register {
@@ -47,6 +48,24 @@ input[type="password"] {
 
 .login {
   margin-top: 19vh;
+}
+
+.form-register {
+  font-size: 2vh;
+}
+
+.form-register input[type="text"],
+input[type="password"] {
+  font-size: 2vh;
+}
+
+.custom-select {
+  font-size: 2vh;
+}
+
+.form-register button {
+  font-size: 2vh;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 600px) {
