@@ -29,7 +29,7 @@ class ModalHistory extends Component {
             <h5 className="tengah">History</h5>
           </Modal.Header>
           <Modal.Body>
-            <Table responsive className="text-center">
+            <Table responsive className="text-center table-modal">
               <thead>
                 <tr>
                   <th>No</th>

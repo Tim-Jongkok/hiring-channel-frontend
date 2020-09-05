@@ -33,7 +33,7 @@ class ModalEdit extends React.Component {
   render() {
     return (
       <>
-        <Modal show={this.props.showModalEdit} onHide={this.props.handleCloseModalEdit} scrollable centered>
+        <Modal show={this.props.showModalEdit} className="form-register" onHide={this.props.handleCloseModalEdit} scrollable centered>
           <Modal.Header className="modal-header" closeButton>
             <h5 className="tengah">Edit Profile</h5>
           </Modal.Header>
@@ -142,7 +142,7 @@ class ModalEdit extends React.Component {
                             Total Project
                           </Form.Label>
                           <Form.Control
-                            type="text"
+                            type="number"
                             name="totalProject"
                             placeholder="input total project..."
                             onChange={this.handleChange}
@@ -196,7 +196,7 @@ class ModalEdit extends React.Component {
                   <Col md={12} xs={12}>
                     <Form.Group>
                       <Form.Label className="font-weight-bold">
-                        Deskription
+                        Description
                       </Form.Label>
                       <Form.Control
                         as="textarea"

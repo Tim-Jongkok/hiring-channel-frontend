@@ -86,7 +86,7 @@ class DetailUser extends Component {
                      {/* End of Profile photo */}
 
                      {/* Description */}
-                     <div className="col-12 col-lg-9 px-lg-4 mt-lg-4 ">
+                     <div className="col-12 col-lg-9 px-lg-4 mt-lg-5">
                         <div className="row no-gutters mb-3 mt-lg-5">
                            <div className="col text-center text-lg-left">
                               <h2>{this.state.profile.firstName}&nbsp;{this.state.profile.lastName}</h2>
@@ -94,7 +94,7 @@ class DetailUser extends Component {
                            </div>
                         </div>
                         <div className="row no-gutters mt-lg-5">
-                           <div className="col px-3 px-lg-0">
+                           <div className="col px-5 px-lg-0">
                               <div className="text-justify">
                                  <p>{this.state.profile.description}</p>
                               </div>
@@ -116,13 +116,13 @@ class DetailUser extends Component {
                      <div className="row no-gutters mb-5 mb-lg-0 mt-3">
                         <div className="col-lg-2 ml-lg-5 order-lg-first order-2 text-center mb-2">
                            {this.state.profile.id !== this.state.user.id ? (
-                              <button type="button" className="btn btn-hire">Hire Me</button>
+                              <button type="button" className="btn btn-hire"><h6>Hire Me</h6></button>
                            ) : (
                                  <button
                                     type="button"
                                     className="btn btn-hire"
                                     onClick={this.handleShowModalEdit}
-                                 >Edit</button>
+                                 ><h6>Edit</h6></button>
                               )}
                         </div>
                         <div className="col-lg-2 text-center text-lg-left mb-2 ">
