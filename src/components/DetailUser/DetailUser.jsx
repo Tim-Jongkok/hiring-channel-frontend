@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // components
 import ModalHistory from '../ModalHistory/ModalHistory';
+import ModalEdit from '../ModalEdit/ModalEdit';
 // img & css
 import './DetailUser.css';
 import profilImg from '../../assets/img/gambar.png';
@@ -28,6 +29,7 @@ class DetailUser extends Component {
       },
       // temp
       showModalHistory: false,
+      showModalEdit: false,
    };
 
    handleShowModalHistory = () => {
@@ -36,6 +38,14 @@ class DetailUser extends Component {
 
    handleCloseModalHistory = () => {
       this.setState({ showModalHistory: false })
+   };
+
+   handleShowModalEdit = () => {
+      this.setState({ showModalEdit: true })
+   };
+
+   handleCloseModalEdit = () => {
+      this.setState({ showModalEdit: false })
    };
 
    // const[show, setShow] = useState(false);
@@ -107,7 +117,11 @@ class DetailUser extends Component {
                            {this.state.profile.id !== this.state.user.id ? (
                               <button type="button" className="btn btn-hire">Hire Me</button>
                            ) : (
-                                 <button type="button" className="btn btn-hire">Edit</button>
+                                 <button
+                                    type="button"
+                                    className="btn btn-hire"
+                                    onClick={this.handleShowModalEdit}
+                                 >Edit</button>
                               )}
                         </div>
                         <div className="col-lg-2 text-center text-lg-left mb-2 ">
@@ -129,6 +143,10 @@ class DetailUser extends Component {
             <ModalHistory
                showModalHistory={this.state.showModalHistory}
                handleCloseModalHistory={this.handleCloseModalHistory}
+            />
+            <ModalEdit
+               showModalEdit={this.state.showModalEdit}
+               handleCloseModalEdit={this.handleCloseModalEdit}
             />
          </>
       );
