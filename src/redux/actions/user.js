@@ -67,7 +67,6 @@ export const searchUser = (url, req) => {
     apiCalls
       .fetchAllData(url)
       .then((res) => {
-        console.log(res);
         dispatch(searchUserSuccess(res.data));
       })
       .catch((err) => {

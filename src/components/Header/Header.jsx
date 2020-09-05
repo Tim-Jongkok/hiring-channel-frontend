@@ -62,6 +62,7 @@ const Header = (props) => {
             <option value="first_name">Name</option>
             <option value="rating">Rating</option>
             <option value="total_project">Project</option>
+            <option value="location">Location</option>
           </select>
         </div>
         <div className="menu-icon" onClick={onClickHandler}>
