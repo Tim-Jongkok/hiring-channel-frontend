@@ -7,7 +7,7 @@ import Loading from "../Loading/Loading";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllUserData } from "../../redux/actions/user";
-import {separateArray, calculateColumn} from "../../utils/helpers";
+import { separateArray, calculateColumn } from "../../utils/helpers";
 
 //render userCard
 const renderUserCard = (users, props) => {
@@ -34,7 +34,10 @@ const UserCardContainer = (props) => {
 
   let column = calculateColumn(width);
   const limit = Math.round(height / 106) + column;
-  const seperatedUsers = separateArray(allUsers, Math.round(allUsers.length / column));
+  const seperatedUsers = separateArray(
+    allUsers,
+    allUsers.length / column < 1 ? 1 : allUsers.length / column
+  );
 
   useEffect(() => {
     const firstPage =
@@ -56,7 +59,13 @@ const UserCardContainer = (props) => {
         hasMore={hasMoreData}
         loader={<Loading />}
         endMessage={
-          <p style={{ textAlign: "center", fontSize: "1.75rem" }}>
+          <p
+            style={{
+              marginTop: "10px",
+              textAlign: "center",
+              fontSize: "1.75rem",
+            }}
+          >
             <b>{msg}</b>
           </p>
         }

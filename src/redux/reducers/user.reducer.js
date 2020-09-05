@@ -125,7 +125,7 @@ export default function userReducer(state = initialState, action) {
         return {
           ...state,
           allUsers: dataFromPayload.users,
-          hasMoreData: true,
+          hasMoreData: false,
           apiRequest: {
             ...state.apiRequest,
             lastReq: state.apiRequest.currReq,
