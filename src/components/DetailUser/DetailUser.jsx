@@ -7,7 +7,8 @@ import './DetailUser.css';
 import profilImg from '../../assets/img/gambar.png';
 import starIcon from '../../assets/img/star.png';
 import checkIcon from '../../assets/img/check.png';
-import arrowIcon from '../../assets/img/Arrow.png'
+import arrowIcon from '../../assets/img/Arrow.png';
+import chatIcon from '../../assets/img/chat.png'
 
 class DetailUser extends Component {
    state = {
@@ -76,7 +77,7 @@ class DetailUser extends Component {
                               <div className="profil-pict">
                                  <img src={this.state.profile.image} alt={`gambar ${this.state.profile.firstName}${this.state.profile.lastName}`} />
                               </div>
-                              <h5>@{(`${this.state.profile.firstName}${this.state.profile.lastName}`).toLowerCase()}</h5>
+                              <h5>@{(`${this.state.profile.firstName}${this.state.profile.lastName}`).toLowerCase()} <img src={chatIcon} alt="chatIcon" className="small-icon" /></h5>
                               <p><img src={starIcon} alt="" className="small-icon" /> {this.state.profile.rate}% Success Rate</p>
                               <p><img src={checkIcon} alt="" className="small-icon" /> {this.state.profile.project} Project</p>
                            </div>
