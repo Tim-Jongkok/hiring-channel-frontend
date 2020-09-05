@@ -1,41 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import UserCard from "../UserCard/UserCard";
 import "./UserCardContainer.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useWindowDimensions from "../../hooks/viewportHooks";
 import Loading from "../Loading/Loading";
-import { users } from "./DummyData";
-import {Spinner} from "react-bootstrap";
-import Axios from "axios";
-import queryString from "query-string";
-
-//function to separate array
-const separateIt = (arr, size) => {
-  let newArr = [];
-  for (let i = 0; i < arr.length; i += size) {
-    let sliceIt = arr.slice(i, i + size);
-    newArr.push(sliceIt);
-  }
-  return newArr;
-};
-
-//function to calculate column per viewport width
-const calculateColumn = (width) => {
-  let column;
-  if (width <= 767) {
-    column = 2;
-  } else if (width <= 991) {
-    column = 3;
-  } else if (width <= 1199) {
-    column = 4;
-  } else {
-    column = 6;
-  }
-  return column;
-};
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAllUserData } from "../../redux/actions/user";
+import {separateArray, calculateColumn} from "../../utils/helpers";
 
 //render userCard
-const renderUserCard = (users,props) => {
+const renderUserCard = (users, props) => {
   return (
     <div className="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
       {users.map((user) => {
@@ -46,65 +21,49 @@ const renderUserCard = (users,props) => {
 };
 
 const UserCardContainer = (props) => {
-  const [page, setPage] = useState(1);
-  const [hasMoreData, setHasMoreData] = useState(true);
-  const [userDummy, setUserDummy] = useState([]);
-  const { height,width } = useWindowDimensions();
-  let column = calculateColumn(width);
-  const limit = Math.round(height/106)+column;
-  let path = "";
-  let params = queryString.parse(props.location.search);
-  if (params.search === undefined) {
-    path = `http://localhost:2300/users?page=${page}&limit=${limit}`;
-  } else {
-    path = `http://localhost:2300/users/search?search=${params.search}&page=${page}&limit=${limit}`;
-  }
-  const seperatedUsers = separateIt(userDummy, userDummy.length / column);
+  const { allUsers, hasMoreData, pageInfo, apiRequest, msg } = useSelector(
+    (state) => state.userState
+  );
+  let history = useHistory();
+  const { height, width } = useWindowDimensions();
+  const dispatch = useDispatch();
 
   const handleFetch = () => {
-    Axios.get(path)
-      .then((data) => {
-        if (data.data.data.length === 0) {
-          setHasMoreData(false);
-        } else {
-          setHasMoreData(true);
-          let newArr = [];
-          let _page = page;
-          newArr = [...userDummy];
-          newArr.push(...data.data.data);
-          setUserDummy(newArr);
-          _page++;
-          setPage(_page);
-          props.history.push(
-            props.location.pathname + `?page=${page}&limit=${limit}`
-          );
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(fetchAllUserData(pageInfo.nextPage, apiRequest.currReq));
   };
 
+  let column = calculateColumn(width);
+  const limit = Math.round(height / 106) + column;
+  const seperatedUsers = separateArray(allUsers, Math.round(allUsers.length / column));
+
   useEffect(() => {
-    handleFetch();
+    const firstPage =
+      history.location.pathname +
+      `?type_name=engineer&page=${pageInfo.currentPage}&limit=${limit}`;
+    dispatch(fetchAllUserData(firstPage, apiRequest.currReq));
   }, []);
+
+  useEffect(() => {
+    if (pageInfo.nextPage) history.push(pageInfo.nextPage);
+  }, [pageInfo.nextPage]);
+
   return (
     <>
       <InfiniteScroll
         scrollableTarget={document.getElementsByClassName("main-container")}
-        dataLength={userDummy.length}
+        dataLength={allUsers.length}
         next={handleFetch}
         hasMore={hasMoreData}
         loader={<Loading />}
         endMessage={
-          <p style={{ textAlign: "center",fontSize:"1.75rem" }}>
-            <b>Yay! You have seen it all</b>
+          <p style={{ textAlign: "center", fontSize: "1.75rem" }}>
+            <b>{msg}</b>
           </p>
         }
       >
         <div className="row no-gutters">
           {seperatedUsers.map((seperatedUser) => {
-            return renderUserCard(seperatedUser,props);
+            return renderUserCard(seperatedUser, props);
           })}
         </div>
       </InfiniteScroll>

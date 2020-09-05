@@ -7,18 +7,29 @@ import menu_icon from "../../assets/img/menu.webp";
 import user_icon from "../../assets/img/user.jpg";
 import MenuExpanded from "../MenuExpanded/MenuExpanded";
 import "./Header.css";
+import { useDispatch } from "react-redux";
+import { searchUser } from "../../redux/actions/user";
+import useWindowDimensions from "../../hooks/viewportHooks";
+import { calculateColumn } from "../../utils/helpers";
+import { useHistory } from "react-router-dom";
 
 const Header = (props) => {
   const [menuDisplayed, setDisplayMenu] = useState(false);
-  const [sort, setSort] = useState("name");
-
+  const [sort, setSort] = useState("first_name");
+  const dispatch = useDispatch();
+  const { height, width } = useWindowDimensions();
+  let column = calculateColumn(width);
+  const limit = Math.round(height / 106) + column;
+  let history = useHistory();
   const onClickHandler = useCallback(() => {
     setDisplayMenu(!menuDisplayed);
   }, [menuDisplayed]);
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
-      props.history.push(`/?search=${e.target.value}`);
+      const path = `?type_name=engineer&search=${e.target.value}&sort_by=${sort}&order=ASC&page=1&limit=${limit}`;
+      history.push(path);
+      dispatch(searchUser(path, "SEARCH_USERS"));
     }
   };
 
@@ -38,11 +49,17 @@ const Header = (props) => {
             placeholder="Search"
             onKeyPress={handleSearch}
           />
-          <select defaultValue="name" name="filter" onChange={(e)=>{setSort(e.target.value);}}>
+          <select
+            defaultValue="name"
+            name="filter"
+            onChange={(e) => {
+              setSort(e.target.value);
+            }}
+          >
             <option value="none" disabled hidden>
               Sort
             </option>
-            <option value="name">Name</option>
+            <option value="first_name">Name</option>
             <option value="rating">Rating</option>
             <option value="total_project">Project</option>
           </select>

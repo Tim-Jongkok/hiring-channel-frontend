@@ -6,9 +6,9 @@ import "./Home.css";
 const Home = (props) => {
   return (
     <>
-      <Header {...props}/>
+      <Header/>
       <div className="main-container">
-        <UserCardContainer key={1} {...props}/>
+        <UserCardContainer key={1}/>
       </div>
     </>
   );
