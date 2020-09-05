@@ -1,0 +1,78 @@
+.main-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.body-content {
+    position: absolute;
+    width: 100%;
+    height: 70vh;
+    top: 200px;
+}
+
+.profil-pict {
+    width: 250px;
+    height: 350px;
+    margin: 0 auto;
+}
+
+.profil-pict img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.top-jumbotron {
+    background-color: rgba(171, 132, 200, 0.5);
+    height: 350px;
+}
+
+.top-jumbotron img {
+    position: absolute;
+    width: 30px;
+    top: 20px;
+    left: 20px;
+}
+
+.small-icon {
+    width: 20px;
+}
+
+.btn-hire {
+    background-color: #AB84C8;
+    color: #FFF;
+    width: 170px;
+}
+
+.btn-history {
+    color: #AB84C8;
+}
+
+.btn-edit {
+    color: #AB84C8;
+    border-color: #AB84C8;
+}
+
+/* DESKTOP */
+
+@media only screen and (min-width: 992px) {
+    .profil-pict {
+        max-width: 250px;
+        max-height: 305px;
+        width: 100%;
+        height: 100%;
+    }
+    .profil-pict img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        object-fit: cover;
+    }
+    .content-bottom {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+}
