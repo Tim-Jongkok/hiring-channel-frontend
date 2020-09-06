@@ -14,7 +14,7 @@ import { getUserDetail } from "../../redux/actions/user";
 import { useSelector, useDispatch } from "react-redux";
 
 const DetailUser = (props) => {
-   const { allUsers, hasMoreData, userDetail, apiRequest, msg } = useSelector(
+   const { userDetail } = useSelector(
       (state) => state.userState
    );
    const dispatch = useDispatch();
@@ -58,7 +58,11 @@ const DetailUser = (props) => {
                      <div className="row no-gutters">
                         <div className="col text-center text-lg-left">
                            <div className="profil-pict">
-                              <img src={userDetail.image} alt={`gambar ${userDetail.first_name}${userDetail.last_name}`} />
+                              {userDetail.image ? (
+                                 <img src={userDetail.image} alt={`gambar ${userDetail.first_name}${userDetail.last_name}`} />
+                              ) : (
+                                    <img src={profilImg} alt={`gambar ${userDetail.first_name}${userDetail.last_name}`} />
+                                 )}
                            </div>
                            <h5>@{(`${userDetail.first_name}${userDetail.last_name}`).toLowerCase()} <img src={chatIcon} alt="chatIcon" className="small-icon" /></h5>
                            <p><img src={starIcon} alt="" className="small-icon" /> {userDetail.rating}% Success Rate</p>
@@ -99,7 +103,11 @@ const DetailUser = (props) => {
                   <div className="row no-gutters mb-5 mb-lg-0 mt-3">
                      <div className="col-lg-2 ml-lg-5 order-lg-first order-2 text-center mb-2">
                         {userDetail.id !== user.id ? (
-                           <button type="button" className="btn btn-hire"><h6>Hire Me</h6></button>
+                           Number(userDetail.is_open) === 1 ? (
+                              <button type="button" className="btn btn-hire"><h6>Hire Me</h6></button>
+                           ) : (
+                                 <button type="button" className="btn btn-hire" disabled><h6>Not Available</h6></button>
+                              )
                         ) : (
                               <button
                                  type="button"
