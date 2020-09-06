@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getUserDetail } from "../../redux/actions/user";
+import { getUserDetail, updateUserData } from "../../redux/actions/user";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { addHistory } from '../../redux/actions/user';
 // components
 import ModalHistory from '../ModalHistory/ModalHistory';
 import ModalEdit from '../ModalEdit/ModalEdit';
@@ -20,14 +22,17 @@ const DetailUser = (props) => {
       (state) => state.userState
    );
    const dispatch = useDispatch();
+   const history = useHistory();
+
    useEffect(() => {
       dispatch(getUserDetail(props.location.pathname));
    }, []);
 
    const [showModalHistory, setShowModalHistory] = useState(false);
    const [showModalEdit, setShowModalEdit] = useState(false);
-   const [user] = useState({ id: 1 })
+   const [corporate_id] = useState(6);
 
+   // handle
    const handleShowModalHistory = () => setShowModalHistory(true);
 
    const handleCloseModalHistory = () => setShowModalHistory(false);
@@ -35,6 +40,27 @@ const DetailUser = (props) => {
    const handleShowModalEdit = () => setShowModalEdit(true);
 
    const handleCloseModalEdit = () => setShowModalEdit(false);
+
+   const handleHire = () => {
+      const data = {
+         user_id: userDetail.id,
+         corporate_id: corporate_id,
+         rating: 80,
+      };
+      dispatch(addHistory(data));
+      console.log(data);
+      // update user
+      const config = {
+         headers: {
+            "content-type": "multipart/form-data",
+            // "x-access-token": "Bearer " + this.props.token,
+         },
+      };
+      let formData = new FormData();
+      formData.append("is_open", 0)
+      dispatch(updateUserData(history.location.pathname, "UPDATE_USER_DATA", formData, config));
+      // console.log(formData);
+   }
 
    return (
       <>
@@ -46,9 +72,11 @@ const DetailUser = (props) => {
                      <Link to="/">
                         <img className="arrow-icon" src={arrowIcon} alt="" />
                      </Link>
-                     <Link to="/">
-                        <img className="logout-icon" src={logoutIcon} alt="" />
-                     </Link>
+                     {Number(userDetail.id) === corporate_id ? (
+                        <Link to="/">
+                           <img className="logout-icon" src={logoutIcon} alt="" />
+                        </Link>
+                     ) : ("")}
                   </div>
                </div>
             </div>
@@ -111,22 +139,26 @@ const DetailUser = (props) => {
                   </div>
                   <div className="row no-gutters mb-5 mb-lg-0 mt-3">
                      <div className="col-lg-2 ml-lg-5 order-lg-first order-2 text-center mb-2">
-                        {userDetail.id !== user.id ? (
-                           Number(userDetail.is_open) === 1 ? (
-                              userDetail.type_name === "Engineer" ? (
-                                 <button type="button" className="btn btn-hire"><h6>Hire Me</h6></button>
-                              ) : (
-                                    <button type="button" className="btn btn-hire"><h6>Apply</h6></button>
-                                 )
-                           ) : (
-                                 <button type="button" className="btn btn-disable" disabled><h6>Not Available</h6></button>
-                              )
+                        {userDetail.type === 'Admin' ? (
+                           <button type="button" className="btn btn-hire"><h6>Delete</h6></button>
                         ) : (
-                              <button
-                                 type="button"
-                                 className="btn btn-hire"
-                                 onClick={handleShowModalEdit}
-                              ><h6>Edit</h6></button>
+                              userDetail.id !== corporate_id ? (
+                                 Number(userDetail.is_open) === 1 ? (
+                                    userDetail.type_name === "Engineer" ? (
+                                       <button type="button" className="btn btn-hire" onClick={handleHire}><h6>Hire Me</h6></button>
+                                    ) : (
+                                          <button type="button" className="btn btn-hire"><h6>Apply</h6></button>
+                                       )
+                                 ) : (
+                                       <button type="button" className="btn btn-disable" disabled><h6>Not Available</h6></button>
+                                    )
+                              ) : (
+                                    <button
+                                       type="button"
+                                       className="btn btn-hire"
+                                       onClick={handleShowModalEdit}
+                                    ><h6>Edit</h6></button>
+                                 )
                            )}
                      </div>
                      <div className="col-lg-2 text-center text-lg-left mb-2 ">

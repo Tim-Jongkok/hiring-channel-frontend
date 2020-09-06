@@ -31,3 +31,8 @@ export const updateUserData = (url, data, config) => {
 export const deleteUserData = (url, config) => {
     return Axios.delete(process.env.REACT_APP_API_URL + url, config);
 }
+
+export const addHistory = (data) => {
+    const API_URL = `${process.env.REACT_APP_API_URL}/history`;
+    return Axios.post(API_URL, data);
+}

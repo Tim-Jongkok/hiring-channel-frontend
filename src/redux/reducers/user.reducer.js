@@ -226,6 +226,43 @@ export default function userReducer(state = initialState, action) {
         msg: "Error request..!",
       };
 
+    //add history
+    case actions.addHistory + _pending:
+      return {
+        ...state,
+        // hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          currReq: dataFromPayload.req,
+        },
+        loading: true,
+        error: false,
+        msg: "loading",
+      };
+
+    case actions.addHistory + _fulfilled:
+      return {
+        ...state,
+        // userHistory: dataFromPayload.users.data,
+        // hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          lastReq: state.apiRequest.currReq,
+        },
+        loading: false,
+        error: false,
+        msg: "Success..!",
+      };
+
+    case actions.addHistory + _rejected:
+      return {
+        // userHistory: "",
+        hasMoreData: false,
+        loading: false,
+        error: true,
+        msg: "Error request..!",
+      };
+
     // update user
     case actions.updateUserData + _pending:
       return {

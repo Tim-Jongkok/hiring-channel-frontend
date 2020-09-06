@@ -153,6 +153,48 @@ const getHistoryById = (url, req) => {
   };
 };
 
+// add history
+// const addHistoryRequest = (req) => {
+//   return {
+//     type: actions.addHistory + _pending,
+//     payload: { req: req },
+//   }
+// };
+
+const addHistorySuccess = (payload) => {
+  return {
+    type: actions.addHistory + _fulfilled,
+    payload: payload,
+  }
+};
+
+const addHistoryError = (msg) => {
+  return {
+    type: actions.addHistory + _rejected,
+    payload: { msg }
+  }
+};
+
+export const addHistory = (data) => {
+  return (dispatch) => {
+    apiCalls.addHistory(data)
+      .then((res) => {
+        console.log(res);
+        const payload = {
+          user_id: res.data.data.user_id,
+          corporate_id: res.data.data.corporate_id,
+          rating: res.data.data.rating,
+        }
+        dispatch(addHistorySuccess(payload));
+      })
+      .catch((err) => {
+        console.log(err);
+        const msg = "Request error..!";
+        dispatch(addHistoryError(msg));
+      })
+  };
+};
+
 // get user detail
 const getUserDetailRequest = (req) => {
   return {

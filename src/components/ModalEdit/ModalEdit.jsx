@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Button, Modal, Container, Form, Row, Col } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUserData } from '../../redux/actions/user';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 import "./ModalEdit.css";
 
@@ -14,7 +14,7 @@ const ModalEdit = (props) => {
     return state.userState.userDetail;
   });
 
-  const history = useHistory()
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
