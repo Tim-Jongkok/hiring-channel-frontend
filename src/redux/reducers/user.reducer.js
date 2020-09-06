@@ -21,7 +21,7 @@ const initialState = {
     nextPage: "",
   },
   userDetail: {},
-  userDetail: {},
+  userHistory: [],
 };
 
 export default function userReducer(state = initialState, action) {
@@ -207,7 +207,7 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         userHistory: dataFromPayload.users.data,
-        hasMoreData: true,
+        // hasMoreData: true,
         apiRequest: {
           ...state.apiRequest,
           lastReq: state.apiRequest.currReq,

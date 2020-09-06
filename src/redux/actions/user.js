@@ -77,7 +77,7 @@ export const searchUser = (url, req) => {
   };
 };
 
-// update history
+// update user
 const updateUserDataRequest = (req) => {
   return {
     type: actions.updateUserData + _pending,
@@ -152,14 +152,6 @@ const getHistoryById = (url, req) => {
       })
   };
 };
-
-// add history
-// const addHistoryRequest = (req) => {
-//   return {
-//     type: actions.addHistory + _pending,
-//     payload: { req: req },
-//   }
-// };
 
 const addHistorySuccess = (payload) => {
   return {
