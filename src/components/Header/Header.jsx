@@ -4,7 +4,7 @@ import search_icon from "../../assets/img/search.png";
 import chat_icon from "../../assets/img/chat.png";
 import bell_icon from "../../assets/img/bell.png";
 import menu_icon from "../../assets/img/menu.webp";
-import user_icon from "../../assets/img/user.jpg";
+import user_icon from "../../assets/img/gambar.png";
 import MenuExpanded from "../MenuExpanded/MenuExpanded";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,8 +17,10 @@ const Header = (props) => {
   const [menuDisplayed, setDisplayMenu] = useState(false);
   const [sort, setSort] = useState("first_name");
   const dispatch = useDispatch();
-  const { firstName, lastName, corporateName, image, type_id } = useSelector((state) => state.authState);
-  const {pageInfo, apiRequest} = useSelector((state)=>state.userState);
+  const { id,firstName, lastName, corporateName, image, type_id } = useSelector(
+    (state) => state.authState
+  );
+  const { pageInfo, apiRequest } = useSelector((state) => state.userState);
   const { height, width } = useWindowDimensions();
   let column = calculateColumn(width);
   const limit = Math.round(height / 106) + column;
@@ -31,9 +33,7 @@ const Header = (props) => {
   const homeOnClick = () => {
     const firstPage =
       history.location.pathname +
-      `?type_name=${typeNameSearchQuery(type_id)}&page=${
-        pageInfo.currentPage
-      }&limit=${limit}`;
+      `?type_name=${typeNameSearchQuery(type_id)}&page=1&limit=${limit}`;
     dispatch(fetchAllUserData(firstPage, apiRequest.currReq));
     history.push(firstPage);
   };
@@ -51,7 +51,7 @@ const Header = (props) => {
   return (
     <>
       <header>
-        <div className="logo">
+        <div className="logo" onClick={homeOnClick}>
           <img src={logo} alt="" />
         </div>
         <div className="search-group">
@@ -87,12 +87,12 @@ const Header = (props) => {
         </button>
         <div className="user-group">
           <div className="user-icon">
-            <img src={image ? image: user_icon} alt="" />
+            <img src={image ? image : user_icon} alt="" />
           </div>
           <div className="name">
             <button
               onClick={() => {
-                history.push("/users/1");
+                history.push(`/user/${id}`);
               }}
             >
               {firstName ? `${firstName} ${lastName}` : corporateName}

@@ -38,6 +38,25 @@ export default function userReducer(state = initialState, action) {
         msg: "loading",
       };
     case actions.fetchAllData + _fulfilled:
+      if (dataFromPayload.pageInfo.prevPage === "") {
+        return {
+          ...state,
+          allUsers: [...dataFromPayload.users],
+          hasMoreData: true,
+          apiRequest: {
+            ...state.apiRequest,
+            lastReq: state.apiRequest.currReq,
+          },
+          loading: false,
+          error: false,
+          msg: "done",
+          pageInfo: {
+            prevPage: dataFromPayload.pageInfo.prevPage,
+            currentPage: Number(dataFromPayload.pageInfo.currentPage) + 1,
+            nextPage: dataFromPayload.pageInfo.nextPage,
+          },
+        };
+      }
       if (dataFromPayload.pageInfo.nextPage !== "") {
         const newArr = [...state.allUsers];
         newArr.push(...dataFromPayload.users);
@@ -54,7 +73,7 @@ export default function userReducer(state = initialState, action) {
           msg: "done",
           pageInfo: {
             prevPage: dataFromPayload.pageInfo.prevPage,
-            currentPage: Number(dataFromPayload.pageInfo.currentPage) + 1,
+            currentPage: Number(dataFromPayload.pageInfo.currentPage),
             nextPage: dataFromPayload.pageInfo.nextPage,
           },
         };
@@ -73,7 +92,7 @@ export default function userReducer(state = initialState, action) {
           error: false,
           msg: "Yay! You have seen it all",
           pageInfo: {
-            currPage: 1,
+            currentPage: 1,
           },
         };
       }
@@ -117,7 +136,7 @@ export default function userReducer(state = initialState, action) {
               : "Yay! You have seen it all",
           pageInfo: {
             prevPage: dataFromPayload.pageInfo.prevPage,
-            currentPage: Number(dataFromPayload.pageInfo.currentPage) + 1,
+            currentPage: Number(dataFromPayload.pageInfo.currentPage),
             nextPage: dataFromPayload.pageInfo.nextPage,
           },
         };
@@ -135,7 +154,7 @@ export default function userReducer(state = initialState, action) {
           msg: "Yay! You have seen it all",
           pageInfo: {
             prevPage: dataFromPayload.pageInfo.prevPage,
-            currentPage: Number(dataFromPayload.pageInfo.currentPage) + 1,
+            currentPage: Number(dataFromPayload.pageInfo.currentPage),
             nextPage: dataFromPayload.pageInfo.nextPage,
           },
         };

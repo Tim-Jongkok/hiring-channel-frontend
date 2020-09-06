@@ -28,7 +28,9 @@ const UserCard = ({ user }) => {
           </div>
           <div className="card-text">
             <h5>
-              {user.first_name} {user.last_name}
+              {user.corporate_name
+                ? user.corporate_name
+                : `${user.first_name} ${user.last_name}`}
             </h5>
             <p>{user.field}</p>
             {user.type_name === "engineer" ? (
@@ -63,6 +65,9 @@ const UserCard = ({ user }) => {
             )}
             <p>{user.type_name === "engineer" ? "Skill" : "Location"}</p>
             <p>{user.type_name === "engineer" ? user.skill : user.location}</p>
+          </div>
+          <div className="overlay">
+            
           </div>
         </div>
       </div>

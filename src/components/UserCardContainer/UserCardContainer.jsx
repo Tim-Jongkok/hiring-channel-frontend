@@ -56,7 +56,7 @@ const UserCardContainer = (props) => {
 
   useEffect(() => {
     if (pageInfo.nextPage) history.push(pageInfo.nextPage);
-  }, [pageInfo]);
+  }, [pageInfo.nextPage]);
 
   return (
     <>
