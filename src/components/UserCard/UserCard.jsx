@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 const UserCard = ({ user }) => {
   let history = useHistory();
   const handleOnClick = () => {
-    history.push(`/users/${user.id}`);
+    history.push(`/user/${user.id}`);
   };
   const style = {
     height: 0,

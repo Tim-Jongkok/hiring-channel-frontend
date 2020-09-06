@@ -213,6 +213,7 @@ export const getUserDetail = (url, req) => {
     dispatch(getUserDetailRequest(req));
     apiCalls.getUserDetail(url)
       .then((res) => {
+        console.log(res);
         dispatch(getUserDetailSuccess(res.data));
         dispatch(getHistoryById(url.replace("user", "history")));
       })

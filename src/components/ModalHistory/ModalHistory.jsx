@@ -14,7 +14,6 @@ const ModalHistory = (props) => {
     return state.userState.userHistory;
   });
 
-  console.log(userHistoryStore);
   return (
     <>
       <Modal show={props.showModalHistory} size="lg" onHide={props.handleCloseModalHistory} centered>
