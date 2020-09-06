@@ -8,6 +8,7 @@ export const actions = {
   userLogOut: "USER_LOGOUT",
   updateUserData: "UPDATE_USER_DATA",
   deleteUserData: "DELETE_USER_DATA",
+  getHistoryById: "GET_HISTORY_BY_ID",
 };
 
 export const _pending = "_PENDING";

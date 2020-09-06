@@ -77,6 +77,43 @@ export const searchUser = (url, req) => {
   };
 };
 
+// get history
+const getHistoryByIdRequest = (req) => {
+  return {
+    type: actions.getHistoryById + _pending,
+    payload: { req: req },
+  }
+};
+
+const getHistoryByIdSuccess = (data) => {
+  return {
+    type: actions.getHistoryById + _fulfilled,
+    payload: { users: data }
+  }
+};
+
+const getHistoryByIdError = (msg) => {
+  return {
+    type: actions.getHistoryById + _rejected,
+    payload: { msg }
+  }
+};
+
+const getHistoryById = (url, req) => {
+  return (dispatch) => {
+    dispatch(getHistoryByIdRequest(req));
+    apiCalls.getHistoryById(url)
+      .then((res) => {
+        dispatch(getHistoryByIdSuccess(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+        const msg = "Request error..!";
+        dispatch(getHistoryByIdError(msg));
+      })
+  };
+};
+
 // get user detail
 const getUserDetailRequest = (req) => {
   return {
@@ -105,6 +142,7 @@ export const getUserDetail = (url, req) => {
     apiCalls.getUserDetail(url)
       .then((res) => {
         dispatch(getUserDetailSuccess(res.data));
+        dispatch(getHistoryById(url.replace("user", "history")));
       })
       .catch((err) => {
         console.log(err);
@@ -113,3 +151,4 @@ export const getUserDetail = (url, req) => {
       })
   };
 };
+

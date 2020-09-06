@@ -21,6 +21,7 @@ const initialState = {
     nextPage: "",
   },
   userDetail: {},
+  userDetail: {},
 };
 
 export default function userReducer(state = initialState, action) {
@@ -151,6 +152,7 @@ export default function userReducer(state = initialState, action) {
         msg: "Oh no, no user found!",
       };
 
+    // user detail
     case actions.getUserDetail + _pending:
       return {
         ...state,
@@ -180,7 +182,44 @@ export default function userReducer(state = initialState, action) {
 
     case actions.getUserDetail + _rejected:
       return {
-        userDetail: "",
+        userHistory: "",
+        hasMoreData: false,
+        loading: false,
+        error: true,
+        msg: "Error request..!",
+      };
+
+    // user history
+    case actions.getHistoryById + _pending:
+      return {
+        ...state,
+        hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          currReq: dataFromPayload.req,
+        },
+        loading: true,
+        error: false,
+        msg: "loading",
+      };
+
+    case actions.getHistoryById + _fulfilled:
+      return {
+        ...state,
+        userHistory: dataFromPayload.users.data,
+        hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          lastReq: state.apiRequest.currReq,
+        },
+        loading: false,
+        error: false,
+        msg: "Success..!",
+      };
+
+    case actions.getHistoryById + _rejected:
+      return {
+        userHistory: "",
         hasMoreData: false,
         loading: false,
         error: true,
