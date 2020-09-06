@@ -1,20 +1,14 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const PrivateRoute = ({
-  component: Component,
-  isLoggedIn,
-  redirectPath,
-  level_id,
-  ...rest
-}) => {
+const PrivateRoute = ({ component: Component, redirectPath, ...rest }) => {
+  const { isLogin } = useSelector((state) => state.authState);
   return (
     <Route
       {...rest}
       render={(props) =>
-        isLoggedIn && rest.path !== "/report" ? (
-          <Component {...props} />
-        ) : level_id > 2 ? (
+        isLogin ? (
           <Component {...props} />
         ) : (
           <Redirect

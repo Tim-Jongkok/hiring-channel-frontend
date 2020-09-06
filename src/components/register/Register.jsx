@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
-import Axios from "axios";
+import { connect } from "react-redux";
+
+import { register, clearMsg } from "../../redux/actions/auth";
 
 // import component
 import LeftAuth from "../leftAuth/LeftAuth";
@@ -121,23 +123,9 @@ class Register extends React.Component {
     const isValid = this.validate();
 
     if (isValid) {
-      // console.log(data);
-      const Qs = "http://localhost:8000/auth/register";
-      Axios.post(Qs, data)
-        .then((res) => {
-          if (res.data.success === false) {
-            this.setState({
-              emailError: "email is ready",
-            });
-          } else {
-            console.log(res.data.data);
-            // clear form
-            this.setState(initialState);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.props.registerUser(data);
+      this.props.clrMsg();
+      this.setState(initialState);
     }
   };
 
@@ -254,6 +242,7 @@ class Register extends React.Component {
 
                     <Form.Text className="text-danger">
                       {this.state.emailError}
+                      {this.props.state.authState.msgErrEmailReady}
                     </Form.Text>
                   </Form.Group>
 
@@ -284,7 +273,13 @@ class Register extends React.Component {
                   >
                     Register
                   </Button>
-                  <Button variant="register" size="lg" block className="login">
+                  <Button
+                    variant="register"
+                    size="lg"
+                    block
+                    className="login"
+                    onClick={this.props.changeToLogin}
+                  >
                     Already sign up? Login
                   </Button>
                 </Form>
@@ -297,4 +292,15 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    registerUser: (data) => dispatch(register(data)),
+    clrMsg: () => dispatch(clearMsg()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
