@@ -4,7 +4,12 @@
   text-align: center;
 }
 
+th, td {
+  font-size: 1.6rem;
+}
+
 .tengah {
+  font-size: 2rem;
   width: 100%;
   text-align: center;
 }
