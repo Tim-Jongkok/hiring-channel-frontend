@@ -13,7 +13,7 @@ function App() {
     <>
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <PrivateRoute exact path="/" redirectPath="/auth" component={Home} />
           <Route exact path="/user/:id" component={DetailUser} />
           <PublicRoute exact redirectPath="/" path="/auth" component={Auth} />
         </Switch>

@@ -129,6 +129,12 @@
       align-self: center;
 }
 
+.logout-btn {
+  width: 50%;
+  margin: auto;
+  font-size: 1.75rem;
+}
+
 @media all and (min-width: 992px) {
   .menu-container-show {
     width: 360px;

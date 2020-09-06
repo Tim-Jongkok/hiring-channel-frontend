@@ -7,7 +7,11 @@ import Loading from "../Loading/Loading";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllUserData } from "../../redux/actions/user";
-import { separateArray, calculateColumn } from "../../utils/helpers";
+import {
+  separateArray,
+  calculateColumn,
+  typeNameSearchQuery,
+} from "../../utils/helpers";
 
 //render userCard
 const renderUserCard = (users) => {
@@ -24,6 +28,7 @@ const UserCardContainer = (props) => {
   const { allUsers, hasMoreData, pageInfo, apiRequest, msg } = useSelector(
     (state) => state.userState
   );
+  const { type_id } = useSelector((state) => state.authState);
   let history = useHistory();
   const { height, width } = useWindowDimensions();
   const dispatch = useDispatch();
@@ -42,8 +47,11 @@ const UserCardContainer = (props) => {
   useEffect(() => {
     const firstPage =
       history.location.pathname +
-      `?type_name=engineer&page=${pageInfo.currentPage}&limit=${limit}`;
+      `?type_name=${typeNameSearchQuery(type_id)}&page=${
+        pageInfo.currentPage
+      }&limit=${limit}`;
     dispatch(fetchAllUserData(firstPage, apiRequest.currReq));
+    history.push(firstPage);
   }, []);
 
   useEffect(() => {
