@@ -1,6 +1,10 @@
 import React from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
-import Axios from "axios";
+import { connect } from "react-redux";
+
+import { Redirect } from "react-router-dom";
+
+import { loginUser, clearMsg } from "../../redux/actions/auth";
 
 // import component
 import LeftAuth from "../leftAuth/LeftAuth";
@@ -45,8 +49,13 @@ class Login extends React.Component {
     return true;
   };
 
+  redirectpush = () => {
+    return <Redirect push to="/" />;
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
+    this.props.clrMsg();
 
     const data = {
       email: this.state.email,
@@ -54,25 +63,9 @@ class Login extends React.Component {
     };
 
     const isValid = this.validate();
+
     if (isValid) {
-      const Qs = "http://localhost:8000/auth/login";
-      Axios.post(Qs, data)
-        .then((res) => {
-          if (res.data.success === false) {
-            this.setState({
-              passwordError: "username or password is wrong..!",
-            });
-          } else {
-            console.log(res.data.data);
-            // clear form
-            this.setState(initialState);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      // clear form
-      // this.setState(initialState);
+      this.props.loginUser(data);
     }
   };
 
@@ -115,6 +108,7 @@ class Login extends React.Component {
                     />
                     <Form.Text className="text-danger">
                       {this.state.passwordError}
+                      {this.props.state.authState.msgErrPassword}
                     </Form.Text>
                   </Form.Group>
                   <Form.Group>
@@ -137,6 +131,7 @@ class Login extends React.Component {
                     size="lg"
                     block
                     className="register"
+                    onClick={this.props.changeToRegister}
                   >
                     Register
                   </Button>
@@ -150,4 +145,15 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginUser: (data) => dispatch(loginUser(data)),
+    clrMsg: () => dispatch(clearMsg()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
