@@ -3,10 +3,14 @@ import check_icon from "../../assets/img/check.png";
 import star_icon from "../../assets/img/star.png";
 import "./UserCard.css";
 import { useSpring, animated } from "react-spring";
+import DetailUser from '../DetailUser/DetailUser';
+import { useHistory } from "react-router-dom";
 
 const UserCard = ({ user, ...rest }) => {
+  let history = useHistory()
   const handleOnClick = () => {
-    rest.history.push(`/users/${user.id}`);
+    history.push(`/user/${user.id}`);
+    // console.log(user.id);
   };
   const style = {
     height: 0,
@@ -17,7 +21,7 @@ const UserCard = ({ user, ...rest }) => {
   return (
     <>
       <div className="row no-gutters justify-content-center">
-        <div className="card-container nopadding" style={style}>
+        <div className="card-container nopadding" style={style} onClick={handleOnClick}>
           <div className="user-image">
             <img src={user.image} alt="" />
           </div>
