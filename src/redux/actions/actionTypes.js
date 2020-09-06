@@ -8,6 +8,8 @@ export const actions = {
   userLogOut: "USER_LOGOUT",
   updateUserData: "UPDATE_USER_DATA",
   deleteUserData: "DELETE_USER_DATA",
+  getHistoryById: "GET_HISTORY_BY_ID",
+  addHistory: "ADD_HISTORY",
   addMsgErrPassword: "ADD_MSG_ERR_PASSWORD",
   addMsgEmailReady: "ADD_MSG_ERR_EMAIL_READY",
   clearMsg: "CLEAR_MSG",

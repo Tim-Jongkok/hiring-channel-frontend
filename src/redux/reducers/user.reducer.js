@@ -20,6 +20,8 @@ const initialState = {
     currentPage: 1,
     nextPage: "",
   },
+  userDetail: {},
+  userHistory: [],
 };
 
 export default function userReducer(state = initialState, action) {
@@ -167,6 +169,152 @@ export default function userReducer(state = initialState, action) {
         loading: false,
         error: true,
         msg: "Oh no, no user found!",
+      };
+
+    // user detail
+    case actions.getUserDetail + _pending:
+      return {
+        ...state,
+        hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          currReq: dataFromPayload.req,
+        },
+        loading: true,
+        error: false,
+        msg: "loading",
+      };
+
+    case actions.getUserDetail + _fulfilled:
+      return {
+        ...state,
+        userDetail: dataFromPayload.users.data[0],
+        hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          lastReq: state.apiRequest.currReq,
+        },
+        loading: false,
+        error: false,
+        msg: "Success..!",
+      };
+
+    case actions.getUserDetail + _rejected:
+      return {
+        userHistory: "",
+        hasMoreData: false,
+        loading: false,
+        error: true,
+        msg: "Error request..!",
+      };
+
+    // user history
+    case actions.getHistoryById + _pending:
+      return {
+        ...state,
+        hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          currReq: dataFromPayload.req,
+        },
+        loading: true,
+        error: false,
+        msg: "loading",
+      };
+
+    case actions.getHistoryById + _fulfilled:
+      return {
+        ...state,
+        userHistory: dataFromPayload.users.data,
+        // hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          lastReq: state.apiRequest.currReq,
+        },
+        loading: false,
+        error: false,
+        msg: "Success..!",
+      };
+
+    case actions.getHistoryById + _rejected:
+      return {
+        userHistory: "",
+        hasMoreData: false,
+        loading: false,
+        error: true,
+        msg: "Error request..!",
+      };
+
+    //add history
+    case actions.addHistory + _pending:
+      return {
+        ...state,
+        // hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          currReq: dataFromPayload.req,
+        },
+        loading: true,
+        error: false,
+        msg: "loading",
+      };
+
+    case actions.addHistory + _fulfilled:
+      return {
+        ...state,
+        // userHistory: dataFromPayload.users.data,
+        // hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          lastReq: state.apiRequest.currReq,
+        },
+        loading: false,
+        error: false,
+        msg: "Success..!",
+      };
+
+    case actions.addHistory + _rejected:
+      return {
+        // userHistory: "",
+        hasMoreData: false,
+        loading: false,
+        error: true,
+        msg: "Error request..!",
+      };
+
+    // update user
+    case actions.updateUserData + _pending:
+      return {
+        ...state,
+        hasMoreData: true,
+        apiRequest: {
+          ...state.apiRequest,
+          currReq: dataFromPayload.req,
+        },
+        loading: true,
+        error: false,
+        msg: "loading",
+      };
+
+    case actions.updateUserData + _fulfilled:
+      return {
+        ...state,
+        apiRequest: {
+          ...state.apiRequest,
+          lastReq: state.apiRequest.currReq,
+        },
+        loading: false,
+        error: false,
+        msg: "Success..!",
+      };
+
+    case actions.updateUserData + _rejected:
+      return {
+        // userHistory: "",
+        hasMoreData: false,
+        loading: false,
+        error: true,
+        msg: "Error request..!",
       };
 
     default:
