@@ -62,7 +62,6 @@ const Header = (props) => {
             <option value="first_name">Name</option>
             <option value="rating">Rating</option>
             <option value="total_project">Project</option>
-            <option value="location">Location</option>
           </select>
         </div>
         <div className="menu-icon" onClick={onClickHandler}>
@@ -73,8 +72,14 @@ const Header = (props) => {
           <div className="user-icon">
             <img src={user_icon} alt="" />
           </div>
-          <div id="name">
-            <p>Taufiq Widi Nugroho</p>
+          <div class="name">
+            <button
+              onClick={() => {
+                history.push("/users/1");
+              }}
+            >
+              Taufiq Widi Nugroho
+            </button>
           </div>
         </div>
         <div className="icon-group">

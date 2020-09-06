@@ -83,7 +83,7 @@ input[name="search"]:focus {
 }
 
 select[name="filter"] {
-  height: 60%;
+  padding: auto 0;
   width: 10%;
   min-width: 68px;
   text-align: center;
@@ -93,7 +93,7 @@ select[name="filter"] {
   color: #534e4e;
   margin: 0 10px;
   vertical-align: middle;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: bold;
   border-width: 0 0 0 1px;
   border-style: solid;
@@ -143,20 +143,34 @@ select[name="filter"]:focus {
   margin: auto auto;
 }
 
-.user-group p {
-  height: 100%;
+.name {
+  width: calc(100%-40px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.name button {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  border-width: 0px;
+  background-color: rgba(0, 0, 0, 0);
   width: 100%;
   max-width: 93px;
   vertical-align: middle;
   text-align: center;
-  margin: 0 0 0 5px;
-  font-size: 1.75rem;
+  margin: auto 0;
+  font-size: 1.6rem;
   color: #9b9b9b;
   font-weight: bold;
-  line-height: 4.7rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.name button:focus {
+  outline: none;
 }
 
 .user-icon {
@@ -171,7 +185,7 @@ select[name="filter"]:focus {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 50%;
 }
 
