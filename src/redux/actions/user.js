@@ -77,6 +77,45 @@ export const searchUser = (url, req) => {
   };
 };
 
+// update history
+const updateUserDataRequest = (req) => {
+  return {
+    type: actions.updateUserData + _pending,
+    payload: { req: req },
+  }
+};
+
+const updateUserDataSuccess = (data) => {
+  return {
+    type: actions.updateUserData + _fulfilled,
+    payload: { users: data }
+  }
+};
+
+const updateUserDataError = (msg) => {
+  return {
+    type: actions.updateUserData + _rejected,
+    payload: { msg }
+  }
+};
+
+export const updateUserData = (url, req, data, config) => {
+  return (dispatch) => {
+    dispatch(updateUserDataRequest(req));
+    apiCalls.updateUserData(url, data, config)
+      .then((res) => {
+        dispatch(updateUserDataSuccess(res.data));
+        dispatch(getUserDetail(url));
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        const msg = "Request error..!";
+        dispatch(updateUserDataError(msg));
+      })
+  };
+};
+
 // get history
 const getHistoryByIdRequest = (req) => {
   return {

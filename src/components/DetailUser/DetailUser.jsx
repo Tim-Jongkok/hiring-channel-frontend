@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { getUserDetail } from "../../redux/actions/user";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 // components
 import ModalHistory from '../ModalHistory/ModalHistory';
 import ModalEdit from '../ModalEdit/ModalEdit';
@@ -8,10 +11,9 @@ import profilImg from '../../assets/img/gambar.png';
 import starIcon from '../../assets/img/star.png';
 import checkIcon from '../../assets/img/check.png';
 import arrowIcon from '../../assets/img/Arrow.png';
-import chatIcon from '../../assets/img/chat.png'
-import { Link } from 'react-router-dom';
-import { getUserDetail } from "../../redux/actions/user";
-import { useSelector, useDispatch } from "react-redux";
+import chatIcon from '../../assets/img/chat.png';
+import locationIcon from '../../assets/img/location.png';
+import logoutIcon from '../../assets/img/logout.png';
 
 const DetailUser = (props) => {
    const { userDetail } = useSelector(
@@ -20,11 +22,11 @@ const DetailUser = (props) => {
    const dispatch = useDispatch();
    useEffect(() => {
       dispatch(getUserDetail(props.location.pathname));
-   }, [])
+   }, []);
 
    const [showModalHistory, setShowModalHistory] = useState(false);
    const [showModalEdit, setShowModalEdit] = useState(false);
-   const [user, setUser] = useState({ id: 1 })
+   const [user] = useState({ id: 1 })
 
    const handleShowModalHistory = () => setShowModalHistory(true);
 
@@ -34,7 +36,6 @@ const DetailUser = (props) => {
 
    const handleCloseModalEdit = () => setShowModalEdit(false);
 
-   console.log(userDetail);
    return (
       <>
          <div className="main-content mb-5">
@@ -43,7 +44,10 @@ const DetailUser = (props) => {
                <div className="col">
                   <div className="top-jumbotron">
                      <Link to="/">
-                        <img src={arrowIcon} alt="" />
+                        <img className="arrow-icon" src={arrowIcon} alt="" />
+                     </Link>
+                     <Link to="/">
+                        <img className="logout-icon" src={logoutIcon} alt="" />
                      </Link>
                   </div>
                </div>
@@ -100,13 +104,22 @@ const DetailUser = (props) => {
                         <h6>{userDetail.skill}</h6>
                      </div>
                   </div>
+                  <div className="row no-gutters ml-lg-5 px-lg-4">
+                     <div className="col offset-lg-2 text-center text-lg-left ">
+                        <p><img src={locationIcon} alt="" className="small-icon" />&nbsp;&nbsp;{userDetail.location}</p>
+                     </div>
+                  </div>
                   <div className="row no-gutters mb-5 mb-lg-0 mt-3">
                      <div className="col-lg-2 ml-lg-5 order-lg-first order-2 text-center mb-2">
                         {userDetail.id !== user.id ? (
                            Number(userDetail.is_open) === 1 ? (
-                              <button type="button" className="btn btn-hire"><h6>Hire Me</h6></button>
+                              userDetail.type_name === "Engineer" ? (
+                                 <button type="button" className="btn btn-hire"><h6>Hire Me</h6></button>
+                              ) : (
+                                    <button type="button" className="btn btn-hire"><h6>Apply</h6></button>
+                                 )
                            ) : (
-                                 <button type="button" className="btn btn-hire" disabled><h6>Not Available</h6></button>
+                                 <button type="button" className="btn btn-disable" disabled><h6>Not Available</h6></button>
                               )
                         ) : (
                               <button

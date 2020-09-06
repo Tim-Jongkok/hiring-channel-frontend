@@ -57,11 +57,18 @@ h6 {
     height: 350px;
 }
 
-.top-jumbotron img {
+.top-jumbotron .arrow-icon {
     position: absolute;
     width: 30px;
     top: 20px;
     left: 20px;
+}
+
+.top-jumbotron .logout-icon {
+    position: absolute;
+    width: 30px;
+    top: 20px;
+    right: 20px;
 }
 
 .small-icon {
@@ -72,6 +79,22 @@ h6 {
     background-color: #AB84C8;
     color: #FFF;
     width: 170px;
+}
+
+.btn-hire:hover {
+    color: #FFF;
+    background-color: rgba(171, 132, 200, 0.5);
+}
+
+.btn-disable {
+    background-color: #AB84C8;
+    color: #FFF;
+    width: 170px;
+}
+
+.btn-disable:hover {
+    color: #FFF;
+    background-color: #AB84C8;
 }
 
 .btn-history {
