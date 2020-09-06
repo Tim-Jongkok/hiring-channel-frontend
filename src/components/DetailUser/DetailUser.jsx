@@ -30,7 +30,7 @@ const DetailUser = (props) => {
 
    const [showModalHistory, setShowModalHistory] = useState(false);
    const [showModalEdit, setShowModalEdit] = useState(false);
-   const [corporate_id] = useState(6);
+   const [corporate_id] = useState(7);
 
    // handle
    const handleShowModalHistory = () => setShowModalHistory(true);
@@ -48,7 +48,7 @@ const DetailUser = (props) => {
          rating: 80,
       };
       dispatch(addHistory(data));
-      console.log(data);
+      // console.log(data);
       // update user
       const config = {
          headers: {
