@@ -10,11 +10,11 @@ import { fetchAllUserData } from "../../redux/actions/user";
 import { separateArray, calculateColumn } from "../../utils/helpers";
 
 //render userCard
-const renderUserCard = (users, props) => {
+const renderUserCard = (users) => {
   return (
     <div className="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
       {users.map((user) => {
-        return <UserCard key={user.id} user={user} {...props} />;
+        return <UserCard key={user.id} user={user} />;
       })}
     </div>
   );
@@ -72,7 +72,7 @@ const UserCardContainer = (props) => {
       >
         <div className="row no-gutters">
           {seperatedUsers.map((seperatedUser) => {
-            return renderUserCard(seperatedUser, props);
+            return renderUserCard(seperatedUser);
           })}
         </div>
       </InfiniteScroll>

@@ -32,7 +32,6 @@ export const fetchAllUserData = (url, req) => {
         dispatch(fetchAllDataSuccess(res.data));
       })
       .catch((err) => {
-        console.log(err);
         const msg="Request error";
         dispatch(fetchAllDataError(msg));
       });
