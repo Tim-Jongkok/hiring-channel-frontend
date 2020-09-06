@@ -73,7 +73,13 @@ const Header = (props) => {
             <img src={user_icon} alt="" />
           </div>
           <div class="name">
-            <p>Taufiq Widi Nugroho</p>
+            <button
+              onClick={() => {
+                history.push("/users/1");
+              }}
+            >
+              Taufiq Widi Nugroho
+            </button>
           </div>
         </div>
         <div className="icon-group">

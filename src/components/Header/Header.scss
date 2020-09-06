@@ -131,19 +131,25 @@ select[name="filter"]:focus {
   display:flex;
 }
 
-.name p {
+.name button {
   align-self: center;
+  border-width: 0px;
+  background-color: rgba(0, 0, 0, 0);
   width: 100%;
   max-width:93px;
   vertical-align: middle;
   text-align: center;
   margin: auto 0;
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   color: #9b9b9b;
   font-weight: bold;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.name button:focus {
+  outline: none;
 }
 
 .user-icon {

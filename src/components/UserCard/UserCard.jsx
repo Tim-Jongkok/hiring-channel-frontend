@@ -36,19 +36,19 @@ const UserCard = ({ user }) => {
                 <div className="project-image">
                   <img src={check_icon} alt="" />
                 </div>
-                <p>{user.project}% project</p>
               </div>
+              <p>{user.project} project</p>
               <div className="rating">
                 <div className="rating-image">
                   <img src={star_icon} alt="" />
                 </div>
-                <p>{user.rating}% success rate</p>
               </div>
+              <p>{user.rating}% success rate</p>
             </div>
             <p>
               Skills:
               <br />
-              {user.skill}
+              {"Javascript, ReactJs, ExpressJs, NodeJs, C/C++, Arduino, apa,"}
             </p>
           </div>
         </div>
