@@ -13,12 +13,12 @@ export const getUserDetail = (url, config) => {
 };
 
 export const register = (data) => {
-  const API = `http://localhost:8000/auth/register`;
+  const API = `${process.env.REACT_APP_API_URL}/auth/register`;
   return Axios.post(API, data);
 };
 
 export const login = (data) => {
-  const API = `http://localhost:8000/auth/login`;
+  const API = `${process.env.REACT_APP_API_URL}/auth/login`;
   return Axios.post(API, data);
 };
 

@@ -22,3 +22,13 @@ export const calculateColumn = (width) => {
   }
   return column;
 };
+
+export const typeNameSearchQuery = (id) => {
+  if (id === 1) {
+    return "corporation";
+  } else if (id === 2) {
+    return "engineer";
+  } else {
+    return "admin";
+  }
+};

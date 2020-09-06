@@ -4,8 +4,10 @@ import bell_icon from "../../assets/img/bell.png";
 import "./MenuExpanded.css";
 import { useSpring, animated } from "react-spring";
 import user_icon from "../../assets/img/user.jpg";
+import {useSelector} from "react-redux";
 
 const MenuExpanded = (props) => {
+  const { firstName, lastName, corporateName, image} = useSelector((state) => state.authState);
   /** start of animation section */
   const [springProps, set] = useSpring(() => ({
     transform: "translate(100%)",
@@ -22,9 +24,9 @@ const MenuExpanded = (props) => {
         <div className="user-group-menu">
           <div className="user-icon-menu">
             {/* <p>T</p> */}
-            <img src={user_icon} alt=""/>
+            <img src={image ? image: user_icon} alt=""/>
           </div>
-          <h5>Taufiq Widi</h5>
+          <h5>{firstName ? `${firstName} ${lastName}` : corporateName}</h5>
         </div>
         <div className="message-menu">
           <div className="message-icon">

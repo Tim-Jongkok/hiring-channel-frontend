@@ -31,25 +31,38 @@ const UserCard = ({ user }) => {
               {user.first_name} {user.last_name}
             </h5>
             <p>{user.field}</p>
-            <div className="rating-project-container">
-              <div className="project">
-                <div className="project-image">
-                  <img src={check_icon} alt="" />
+            {user.type_name === "engineer" ? (
+              <>
+                <div className="rating-project-container">
+                  <div className="project">
+                    <div className="project-image">
+                      <img src={check_icon} alt="" />
+                    </div>
+                  </div>
+                  <p>{user.project} project</p>
+                  <div className="rating">
+                    <div className="rating-image">
+                      <img src={star_icon} alt="" />
+                    </div>
+                  </div>
+                  <p>{user.rating}% success rate</p>
                 </div>
-              </div>
-              <p>{user.project} project</p>
-              <div className="rating">
-                <div className="rating-image">
-                  <img src={star_icon} alt="" />
-                </div>
-              </div>
-              <p>{user.rating}% success rate</p>
-            </div>
-            <p>
-              Skills:
-              <br />
-              {"Javascript, ReactJs, ExpressJs, NodeJs, C/C++, Arduino, apa,"}
-            </p>
+              </>
+            ) : (
+              <>
+                {" "}
+                <div className="rating-project-container">
+                  <div className="rating">
+                    <div className="rating-image">
+                      <img src={star_icon} alt="" />
+                    </div>
+                  </div>
+                  <p>{user.rating}/100</p>
+                </div>{" "}
+              </>
+            )}
+            <p>{user.type_name === "engineer" ? "Skill" : "Location"}</p>
+            <p>{user.type_name === "engineer" ? user.skill : user.location}</p>
           </div>
         </div>
       </div>
