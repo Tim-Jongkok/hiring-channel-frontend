@@ -84,6 +84,7 @@ const ModalEdit = (props) => {
                           name="corporate_name"
                           placeholder="input corporate name..."
                           onChange={handleChange}
+                          defaultValue={userDetailStore.corporate_name}
                         />
                         <Form.Text className="text-danger">
                           {/* {state.emailError} */}
@@ -143,6 +144,7 @@ const ModalEdit = (props) => {
                       name="field"
                       placeholder="input field..."
                       onChange={handleChange}
+                      defaultValue={userDetailStore.field}
                     />
                     <Form.Text className="text-danger">
                       {/* {state.emailError} */}
