@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getUserDetail, updateUserData } from "../../redux/actions/user";
-import {logout} from "../../redux/actions/auth";
+import { logout } from "../../redux/actions/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
@@ -78,12 +78,12 @@ const DetailUser = (props) => {
                 <img className="arrow-icon" src={arrowIcon} alt="" />
               </Link>
               {Number(userDetail.id) === id ? (
-                <Link to="/" onClick={()=>dispatch(logout())}>
+                <Link to="/" onClick={() => dispatch(logout())}>
                   <img className="logout-icon" src={logoutIcon} alt="" />
                 </Link>
               ) : (
-                ""
-              )}
+                  ""
+                )}
             </div>
           </div>
         </div>
@@ -100,8 +100,8 @@ const DetailUser = (props) => {
                     {userDetail.image ? (
                       <img src={userDetail.image} alt="" />
                     ) : (
-                      <img src={profilImg} alt="" />
-                    )}
+                        <img src={profilImg} alt="" />
+                      )}
                   </div>
                   <h5 className="text-center h5-field">
                     @
@@ -132,10 +132,10 @@ const DetailUser = (props) => {
                   {userDetail.corporate_name ? (
                     <h2 className="h2-name font-weight-bold">{userDetail.corporate_name}</h2>
                   ) : (
-                    <h2 className="h2-name font-weight-bold">
-                      {userDetail.first_name}&nbsp;{userDetail.last_name}
-                    </h2>
-                  )}
+                      <h2 className="h2-name font-weight-bold">
+                        {userDetail.first_name}&nbsp;{userDetail.last_name}
+                      </h2>
+                    )}
                   <h5 className="h5-field">{userDetail.field}</h5>
                 </div>
               </div>
@@ -183,27 +183,27 @@ const DetailUser = (props) => {
                         className="btn btn-hire"
                         onClick={handleHire}
                       >
-                        <h6 className="h6-btn">Hire Me</h6>
+                        <h6>Hire Me</h6>
                       </button>
                     ) : (
-                      <button type="button" className="btn btn-hire">
-                        <h6 className="h6-btn">Apply</h6>
+                        <button type="button" className="btn btn-hire">
+                          <h6>Apply</h6>
+                        </button>
+                      )
+                  ) : (
+                      <button type="button" className="btn btn-disable" disabled>
+                        <h6>Not Available</h6>
                       </button>
                     )
-                  ) : (
-                    <button type="button" className="btn btn-disable" disabled>
-                      <h6 className="h6-btn">Not Available</h6>
-                    </button>
-                  )
                 ) : (
-                  <button
-                    type="button"
-                    className="btn btn-hire"
-                    onClick={handleShowModalEdit}
-                  >
-                    <h6 className="h6-btn">Edit</h6>
-                  </button>
-                )}
+                      <button
+                        type="button"
+                        className="btn btn-hire"
+                        onClick={handleShowModalEdit}
+                      >
+                        <h6 className="h6-btn">Edit</h6>
+                      </button>
+                    )}
               </div>
               {userDetail.type_name === "Engineer" ? (
                 <div className="col-lg-2 text-center text-lg-left mb-2 ">

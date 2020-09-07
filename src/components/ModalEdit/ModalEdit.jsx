@@ -74,7 +74,7 @@ const ModalEdit = (props) => {
               <Row>
                 {userDetailStore.type_name !== "Engineer" ? (
                   <Fragment>
-                    <Col md={6} xs={12}>
+                    <Col md={12} xs={12}>
                       <Form.Group>
                         <Form.Label className="font-weight-bold">
                           Corporate Name
@@ -83,22 +83,6 @@ const ModalEdit = (props) => {
                           type="text"
                           name="corporate_name"
                           placeholder="input corporate name..."
-                          onChange={handleChange}
-                        />
-                        <Form.Text className="text-danger">
-                          {/* {state.emailError} */}
-                        </Form.Text>
-                      </Form.Group>
-                    </Col>
-                    <Col md={6} xs={12}>
-                      <Form.Group>
-                        <Form.Label className="font-weight-bold">
-                          Field
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="field"
-                          placeholder="input field..."
                           onChange={handleChange}
                         />
                         <Form.Text className="text-danger">
@@ -148,6 +132,23 @@ const ModalEdit = (props) => {
                     </Col>
                   </Fragment>
                 ) : null}
+
+                <Col md={6} xs={12}>
+                  <Form.Group>
+                    <Form.Label className="font-weight-bold">
+                      Field
+                        </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="field"
+                      placeholder="input field..."
+                      onChange={handleChange}
+                    />
+                    <Form.Text className="text-danger">
+                      {/* {state.emailError} */}
+                    </Form.Text>
+                  </Form.Group>
+                </Col>
 
                 <Col md={6} xs={12}>
                   <Form.Group>
