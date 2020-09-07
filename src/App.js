@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Home from "./pages/Home";
-import DetailUser from './components/DetailUser/DetailUser';
+import DetailUser from "./components/DetailUser/DetailUser";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Auth from "./pages/Auth";
 
@@ -14,7 +14,12 @@ function App() {
       <Router>
         <Switch>
           <PrivateRoute exact path="/" redirectPath="/auth" component={Home} />
-          <Route exact path="/user/:id" component={DetailUser} />
+          <PrivateRoute
+            exact
+            path="/user/:id"
+            redirectPath="/"
+            component={DetailUser}
+          />
           <PublicRoute exact redirectPath="/" path="/auth" component={Auth} />
         </Switch>
       </Router>

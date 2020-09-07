@@ -129,7 +129,7 @@ select[name="filter"]:focus {
   vertical-align: middle;
   font-size: 2rem;
   margin: auto auto auto auto;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .home-button:focus {
@@ -161,7 +161,7 @@ select[name="filter"]:focus {
   vertical-align: middle;
   text-align: center;
   margin: auto 0;
-  font-size: 1.6rem;
+  font-size: 2rem;
   color: #9b9b9b;
   font-weight: bold;
   text-overflow: ellipsis;

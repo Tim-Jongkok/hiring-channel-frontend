@@ -38,11 +38,17 @@ const UserCardContainer = (props) => {
   };
 
   let column = calculateColumn(width);
-  const limit = Math.round(height / 106) + column;
+  const limit = Math.round(height / 90) + 2 * column;
+  // if (allUsers.length % 2) {
+  //   //ganjil
+
+  // }
   const seperatedUsers = separateArray(
     allUsers,
     allUsers.length / column < 1 ? 1 : allUsers.length / column
   );
+
+  console.log(seperatedUsers);
 
   useEffect(() => {
     const firstPage =

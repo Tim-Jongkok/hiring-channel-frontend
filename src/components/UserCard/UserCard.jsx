@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import check_icon from "../../assets/img/check.png";
 import star_icon from "../../assets/img/star.png";
+import user_icon from "../../assets/img/gambar.png";
 import "./UserCard.css";
 import { useHistory } from "react-router-dom";
 
@@ -24,7 +25,7 @@ const UserCard = ({ user }) => {
           onClick={handleOnClick}
         >
           <div className="user-image">
-            <img src={user.image} alt="" />
+            <img src={user.image ? user.image : user_icon} alt="" />
           </div>
           <div className="card-text">
             <h5>
@@ -62,7 +63,7 @@ const UserCard = ({ user }) => {
                 </div>
               </>
             )}
-            <p>{user.type_name === "Engineer" ? "Skills:" : "Location"}</p>
+            <p>{user.type_name === "Engineer" ? "Skills:" : "Location:"}</p>
             <p>{user.type_name === "Engineer" ? user.skill : user.location}</p>
           </div>
           <div className="overlay"></div>

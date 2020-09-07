@@ -75,7 +75,7 @@ export default function userReducer(state = initialState, action) {
           msg: "done",
           pageInfo: {
             prevPage: dataFromPayload.pageInfo.prevPage,
-            currentPage: Number(dataFromPayload.pageInfo.currentPage),
+            currentPage: Number(dataFromPayload.pageInfo.currentPage)+1,
             nextPage: dataFromPayload.pageInfo.nextPage,
           },
         };

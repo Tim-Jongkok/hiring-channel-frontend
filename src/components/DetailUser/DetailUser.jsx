@@ -26,7 +26,7 @@ const DetailUser = (props) => {
 
   useEffect(() => {
     dispatch(getUserDetail(props.location.pathname));
-  }, []);
+  }, [dispatch]);
 
   const [showModalHistory, setShowModalHistory] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
@@ -113,7 +113,7 @@ const DetailUser = (props) => {
                       <img src={profilImg} alt="" />
                     )}
                   </div>
-                  <h5 className="text-center h5-field">
+                  <h5 className={"text-center h5-field"}>
                     @
                     {userDetail.corporate_name
                       ? userDetail.corporate_name.toLowerCase().replace(" ", "")
@@ -144,11 +144,26 @@ const DetailUser = (props) => {
                       {userDetail.corporate_name}
                     </h2>
                   ) : (
-                    <h2 className="h2-name font-weight-bold">
+                    <h2
+                      className={
+                        userDetail.type_name === "Corporation" &&
+                        userDetail.image
+                          ? "h2-name font-weight-bold"
+                          : "h2-name-black font-weight-bold"
+                      }
+                    >
                       {userDetail.first_name}&nbsp;{userDetail.last_name}
                     </h2>
                   )}
-                  <h5 className="h5-field-white">{userDetail.field}</h5>
+                  <h5
+                    className={
+                      userDetail.type_name === "Corporation" && userDetail.image
+                        ? "h5-field-white"
+                        : "h5-field"
+                    }
+                  >
+                    {userDetail.field}
+                  </h5>
                 </div>
               </div>
               <div className="row no-gutters mt-lg-5">
@@ -213,7 +228,7 @@ const DetailUser = (props) => {
                     className="btn btn-hire"
                     onClick={handleShowModalEdit}
                   >
-                    <h6 className="h6-btn">Edit</h6>
+                    <h6 >Edit</h6>
                   </button>
                 )}
               </div>
@@ -224,7 +239,7 @@ const DetailUser = (props) => {
                     className="btn btn-link btn-history"
                     onClick={handleShowModalHistory}
                   >
-                    <h6 className="h6-btn">History</h6>
+                    <h6>History</h6>
                   </button>
                 </div>
               ) : null}
