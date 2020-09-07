@@ -33,7 +33,7 @@ const UserCard = ({ user }) => {
                 : `${user.first_name} ${user.last_name}`}
             </h5>
             <p>{user.field}</p>
-            {user.type_name === "engineer" ? (
+            {user.type_name === "Engineer" ? (
               <>
                 <div className="rating-project-container">
                   <div className="project">
@@ -41,7 +41,7 @@ const UserCard = ({ user }) => {
                       <img src={check_icon} alt="" />
                     </div>
                   </div>
-                  <p>{user.project} project</p>
+                  <p>{user.total_project} project</p>
                   <div className="rating">
                     <div className="rating-image">
                       <img src={star_icon} alt="" />
@@ -52,7 +52,6 @@ const UserCard = ({ user }) => {
               </>
             ) : (
               <>
-                {" "}
                 <div className="rating-project-container">
                   <div className="rating">
                     <div className="rating-image">
@@ -60,15 +59,13 @@ const UserCard = ({ user }) => {
                     </div>
                   </div>
                   <p>{user.rating}/100</p>
-                </div>{" "}
+                </div>
               </>
             )}
-            <p>{user.type_name === "engineer" ? "Skill" : "Location"}</p>
-            <p>{user.type_name === "engineer" ? user.skill : user.location}</p>
+            <p>{user.type_name === "Engineer" ? "Skills:" : "Location"}</p>
+            <p>{user.type_name === "Engineer" ? user.skill : user.location}</p>
           </div>
-          <div className="overlay">
-            
-          </div>
+          <div className="overlay"></div>
         </div>
       </div>
     </>

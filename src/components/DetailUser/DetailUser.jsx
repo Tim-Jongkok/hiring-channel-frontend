@@ -110,12 +110,12 @@ const DetailUser = (props) => {
                       : `${userDetail.first_name}${userDetail.last_name}`.toLowerCase()}{" "}
                     <img src={chatIcon} alt="chatIcon" className="small-icon" />
                   </h5>
-                  <p className="text-center">
+                  <p className="text-center p-rating-project">
                     <img src={starIcon} alt="" className="small-icon" />{" "}
                     {userDetail.rating}% Success Rate
                   </p>
                   {userDetail.type_name === "Engineer" ? (
-                    <p className="text-center">
+                    <p className="text-center p-rating-project">
                       <img src={checkIcon} alt="" className="small-icon" />{" "}
                       {userDetail.total_project} Project
                     </p>
@@ -183,16 +183,16 @@ const DetailUser = (props) => {
                         className="btn btn-hire"
                         onClick={handleHire}
                       >
-                        <h6>Hire Me</h6>
+                        <h6 className="h6-btn">Hire Me</h6>
                       </button>
                     ) : (
                       <button type="button" className="btn btn-hire">
-                        <h6>Apply</h6>
+                        <h6 className="h6-btn">Apply</h6>
                       </button>
                     )
                   ) : (
                     <button type="button" className="btn btn-disable" disabled>
-                      <h6>Not Available</h6>
+                      <h6 className="h6-btn">Not Available</h6>
                     </button>
                   )
                 ) : (
@@ -201,7 +201,7 @@ const DetailUser = (props) => {
                     className="btn btn-hire"
                     onClick={handleShowModalEdit}
                   >
-                    <h6>Edit</h6>
+                    <h6 className="h6-btn">Edit</h6>
                   </button>
                 )}
               </div>
@@ -212,7 +212,7 @@ const DetailUser = (props) => {
                     className="btn btn-link btn-history"
                     onClick={handleShowModalHistory}
                   >
-                    <h6>History</h6>
+                    <h6 className="h6-btn">History</h6>
                   </button>
                 </div>
               ) : null}

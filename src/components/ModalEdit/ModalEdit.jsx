@@ -1,13 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Button, Modal, Container, Form, Row, Col } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateUserData } from '../../redux/actions/user';
-import { useHistory } from 'react-router-dom';
+import React, { Fragment, useEffect, useState } from "react";
+import { Button, Modal, Container, Form, Row, Col } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { updateUserData } from "../../redux/actions/user";
+import { useHistory } from "react-router-dom";
 
 import "./ModalEdit.css";
 
 const ModalEdit = (props) => {
-
   const [userDetail, setUserDetail] = useState({});
 
   const userDetailStore = useSelector((state) => {
@@ -22,7 +21,7 @@ const ModalEdit = (props) => {
     const { name, files } = e.target;
     setUserDetail({
       ...userDetail,
-      [name]: files[0]
+      [name]: files[0],
     });
   };
 
@@ -45,14 +44,27 @@ const ModalEdit = (props) => {
       formData.append(key, userDetail[key]);
     }
     event.preventDefault();
-    dispatch(updateUserData(history.location.pathname, "UPDATE_USER_DATA", formData, config));
+    dispatch(
+      updateUserData(
+        history.location.pathname,
+        "UPDATE_USER_DATA",
+        formData,
+        config
+      )
+    );
     props.handleCloseModalEdit();
     // console.log(formData);
   };
 
   return (
     <>
-      <Modal show={props.showModalEdit} className="form-register" onHide={props.handleCloseModalEdit} scrollable centered>
+      <Modal
+        show={props.showModalEdit}
+        className="form-register"
+        onHide={props.handleCloseModalEdit}
+        scrollable
+        centered
+      >
         <Modal.Header className="modal-header" closeButton>
           <h5 className="tengah">Edit Profile</h5>
         </Modal.Header>
@@ -60,13 +72,13 @@ const ModalEdit = (props) => {
           <Container>
             <Form>
               <Row>
-                {userDetailStore.type_name !== 'Engineer' ? (
+                {userDetailStore.type_name !== "Engineer" ? (
                   <Fragment>
                     <Col md={6} xs={12}>
                       <Form.Group>
                         <Form.Label className="font-weight-bold">
                           Corporate Name
-                          </Form.Label>
+                        </Form.Label>
                         <Form.Control
                           type="text"
                           name="corporate_name"
@@ -82,7 +94,7 @@ const ModalEdit = (props) => {
                       <Form.Group>
                         <Form.Label className="font-weight-bold">
                           Field
-                          </Form.Label>
+                        </Form.Label>
                         <Form.Control
                           type="text"
                           name="field"
@@ -97,14 +109,14 @@ const ModalEdit = (props) => {
                   </Fragment>
                 ) : null}
 
-                {userDetailStore.type_name === 'Engineer' ? (
+                {userDetailStore.type_name === "Engineer" ? (
                   <Fragment>
                     {" "}
                     <Col md={6} xs={12}>
                       <Form.Group>
                         <Form.Label className="font-weight-bold">
                           First Name
-                          </Form.Label>
+                        </Form.Label>
                         <Form.Control
                           type="text"
                           name="first_name"
@@ -121,7 +133,7 @@ const ModalEdit = (props) => {
                       <Form.Group>
                         <Form.Label className="font-weight-bold">
                           Last Name
-                          </Form.Label>
+                        </Form.Label>
                         <Form.Control
                           type="text"
                           name="last_name"
@@ -141,7 +153,7 @@ const ModalEdit = (props) => {
                   <Form.Group>
                     <Form.Label className="font-weight-bold">
                       Location
-                      </Form.Label>
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       name="location"
@@ -154,36 +166,38 @@ const ModalEdit = (props) => {
                     </Form.Text>
                   </Form.Group>
                 </Col>
-
-                <Col md={6} xs={12}>
-                  <Form.Group>
-                    <Form.Label className="font-weight-bold">
-                      Available
+                {userDetailStore.type_name === "Engineer" ? (
+                  <Col md={6} xs={12}>
+                    <Form.Group>
+                      <Form.Label className="font-weight-bold">
+                        Available
                       </Form.Label>
-                    <Form.Check
-                      type="checkbox"
-                      id="default-checkbox"
-                      label="&nbsp;&nbsp;Available"
-                      name="is_open"
-                      defaultChecked={Number(userDetailStore.is_open) === 1 ? (true) : (false)}
-                      onChange={(event) => {
-                        setUserDetail({
-                          ...userDetail,
-                          [event.target.name]: Number(event.target.checked),
-                        });
-                      }}
-                    />
-                  </Form.Group>
-                </Col>
-
-                {userDetailStore.type_name === 'Engineer' ? (
+                      <Form.Check
+                        type="checkbox"
+                        id="default-checkbox"
+                        label="&nbsp;&nbsp;Available"
+                        name="is_open"
+                        defaultChecked={
+                          Number(userDetailStore.is_open) === 1 ? true : false
+                        }
+                        onChange={(event) => {
+                          setUserDetail({
+                            ...userDetail,
+                            [event.target.name]: Number(event.target.checked),
+                          });
+                        }}
+                      />
+                    </Form.Group>
+                  </Col>
+                ) : null}
+                {userDetailStore.type_name === "Engineer" ? (
                   <Fragment>
                     {" "}
                     <Col md={12} xs={12}>
                       <Form.Group>
                         <Form.Label className="font-weight-bold">
                           Total Project
-                          </Form.Label>
+                        </Form.Label>
                         <Form.Control
                           type="number"
                           name="total_project"
@@ -201,9 +215,7 @@ const ModalEdit = (props) => {
 
                 <Col md={12} xs={12}>
                   <Form.Group>
-                    <Form.Label className="font-weight-bold">
-                      Image
-                      </Form.Label>
+                    <Form.Label className="font-weight-bold">Image</Form.Label>
                     <Form.File
                       id="image"
                       name="image"
@@ -215,14 +227,14 @@ const ModalEdit = (props) => {
                   </Form.Group>
                 </Col>
 
-                {userDetailStore.type_name === 'Engineer' ? (
+                {userDetailStore.type_name === "Engineer" ? (
                   <Fragment>
                     {" "}
                     <Col md={12} xs={12}>
                       <Form.Group>
                         <Form.Label className="font-weight-bold">
                           Skill
-                          </Form.Label>
+                        </Form.Label>
                         <Form.Control
                           as="textarea"
                           rows="3"
@@ -242,7 +254,7 @@ const ModalEdit = (props) => {
                   <Form.Group>
                     <Form.Label className="font-weight-bold">
                       Description
-                      </Form.Label>
+                    </Form.Label>
                     <Form.Control
                       as="textarea"
                       rows="3"
@@ -262,15 +274,15 @@ const ModalEdit = (props) => {
         <Modal.Footer>
           <Button variant="secondary" onClick={props.handleCloseModalEdit}>
             Close
-            </Button>
+          </Button>
           <Button variant="save" onClick={handleSubmit}>
             Save Changes
-            </Button>
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
   // }
-}
+};
 
 export default ModalEdit;

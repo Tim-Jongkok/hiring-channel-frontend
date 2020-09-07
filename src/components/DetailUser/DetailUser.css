@@ -79,6 +79,7 @@ h6 {
 }
 
 .btn-hire {
+    font-size:3rem;
     background-color: #AB84C8;
     color: #FFF;
     width: 170px;
@@ -144,5 +145,14 @@ h6 {
 
     .p-desc {
         font-size:2.4rem;
+    }
+
+    .p-rating-project{
+        font-size:1.8rem;
+    }
+
+    .h6-btn{
+        font-size:3rem;
+        font-weight: bold;
     }
 }

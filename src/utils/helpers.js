@@ -25,10 +25,10 @@ export const calculateColumn = (width) => {
 
 export const typeNameSearchQuery = (id) => {
   if (id === 1) {
-    return "corporation";
+    return "Corporation";
   } else if (id === 2) {
-    return "engineer";
+    return "Engineer";
   } else {
-    return "admin";
+    return "Admin";
   }
 };
