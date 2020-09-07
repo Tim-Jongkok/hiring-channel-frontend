@@ -1,152 +1,177 @@
 p {
-    font-size: 1.6rem;
-    font-weight: 500;
+  font-size: 1.6rem;
+  font-weight: 500;
 }
 
 h1 {
-    font-size: 4rem;
+  font-size: 4rem;
 }
 
 h2 {
-    font-size: 3.4rem;
-    font-weight: 500;
+  font-size: 3.4rem;
+  font-weight: 500;
 }
 
 h3 {
-    font-size: 2.8rem;
+  font-size: 2.8rem;
 }
 
 h4 {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 h5 {
-    font-size: 1.8rem;
-    font-weight: 500;
+  font-size: 1.8rem;
+  font-weight: 500;
 }
 
 h6 {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
 }
 
 .main-content {
-    position: relative;
-    height: 100%;
-    width: 100%;
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .body-content {
-    position: absolute;
-    width: 100%;
-    height: 70vh;
-    top: 200px;
+  position: absolute;
+  width: 100%;
+  height: 70vh;
+  top: 200px;
 }
 
 .profil-pict {
-    width: 250px;
-    height: 350px;
-    margin: 0 auto;
+  width: 250px;
+  height: 350px;
+  margin: 0 auto;
 }
 
 .profil-pict img {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
 }
 
 .top-jumbotron {
-    background-color: rgba(171, 132, 200, 0.5);
-    height: 350px;
+  background-color: rgba(171, 132, 200, 0.5);
+  height: 350px;
+  width: 100%;
+}
+.corp-img {
+  height: 350px;
+  width: 100%;
+}
+
+.corp-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.overlay-bg {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position:absolute;
+  bottom:0;
 }
 
 .top-jumbotron .arrow-icon {
-    position: absolute;
-    width: 30px;
-    top: 20px;
-    left: 20px;
+  position: absolute;
+  width: 30px;
+  top: 20px;
+  left: 20px;
 }
 
 .top-jumbotron .logout-icon {
-    position: absolute;
-    width: 30px;
-    top: 20px;
-    right: 20px;
+  position: absolute;
+  width: 30px;
+  top: 20px;
+  right: 20px;
 }
 
 .small-icon {
-    width: 20px;
+  width: 20px;
 }
 
 .btn-hire {
-    font-size: 3rem;
-    background-color: #AB84C8;
-    color: #FFF;
-    width: 170px;
+  font-size: 3rem;
+  background-color: #ab84c8;
+  color: #fff;
+  width: 170px;
 }
 
 .btn-hire:hover {
-    color: #FFF;
-    background-color: rgba(171, 132, 200, 0.5);
+  color: #fff;
+  background-color: rgba(171, 132, 200, 0.5);
 }
 
 .btn-disable {
-    background-color: #AB84C8;
-    color: #FFF;
-    width: 170px;
+  background-color: #ab84c8;
+  color: #fff;
+  width: 170px;
 }
 
 .btn-disable:hover {
-    color: #FFF;
-    background-color: #AB84C8;
+  color: #fff;
+  background-color: #ab84c8;
 }
 
 .btn-history {
-    color: #AB84C8;
+  color: #ab84c8;
 }
 
 .btn-edit {
-    color: #AB84C8;
-    border-color: #AB84C8;
+  color: #ab84c8;
+  border-color: #ab84c8;
 }
 
 /* DESKTOP */
 
 @media only screen and (min-width: 992px) {
-    .profil-pict {
-        width: 250px;
-        height: 350px;
-        /* width: 100%;
+  .profil-pict {
+    width: 250px;
+    height: 350px;
+    /* width: 100%;
         height: 100%; */
-    }
-    .profil-pict img {
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-        object-fit: cover;
-    }
-    .content-bottom {
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-    }
-    .padding-margin-custom {
-        margin: auto;
-    }
-    .h2-name {
-        font-size: 4.8rem;
-    }
-    .h5-field {
-        font-size: 2.4rem;
-    }
-    .p-desc {
-        font-size: 2.4rem;
-    }
-    .p-rating-project {
-        font-size: 1.8rem;
-    }
-    .h6-btn {
-        font-size: 3rem;
-        font-weight: bold;
-    }
+  }
+  .profil-pict img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+  .content-bottom {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+  .padding-margin-custom {
+    margin: auto;
+  }
+  .h2-name {
+    font-size: 4.8rem;
+    color:white
+  }
+  .h5-field {
+    font-size: 2.4rem;
+
+  }
+  .h5-field-white {
+    font-size: 2.4rem;
+    color:white
+  }
+  .p-desc {
+    font-size: 2.4rem;
+  }
+  .p-rating-project {
+    font-size: 1.8rem;
+  }
+  .h6-btn {
+    font-size: 3rem;
+    font-weight: bold;
+  }
 }

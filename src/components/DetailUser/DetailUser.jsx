@@ -74,6 +74,16 @@ const DetailUser = (props) => {
         <div className="row no-gutters">
           <div className="col">
             <div className="top-jumbotron">
+              {userDetail.type_name === "Corporation" && userDetail.image ? (
+                <>
+                  <div className="corp-img">
+                    <img src={userDetail.image} alt=""></img>
+                    <div className="overlay-bg"></div>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
               <Link to="/">
                 <img className="arrow-icon" src={arrowIcon} alt="" />
               </Link>
@@ -82,8 +92,8 @@ const DetailUser = (props) => {
                   <img className="logout-icon" src={logoutIcon} alt="" />
                 </Link>
               ) : (
-                  ""
-                )}
+                ""
+              )}
             </div>
           </div>
         </div>
@@ -100,13 +110,13 @@ const DetailUser = (props) => {
                     {userDetail.image ? (
                       <img src={userDetail.image} alt="" />
                     ) : (
-                        <img src={profilImg} alt="" />
-                      )}
+                      <img src={profilImg} alt="" />
+                    )}
                   </div>
                   <h5 className="text-center h5-field">
                     @
                     {userDetail.corporate_name
-                      ? userDetail.corporate_name.toLowerCase()
+                      ? userDetail.corporate_name.toLowerCase().replace(" ", "")
                       : `${userDetail.first_name}${userDetail.last_name}`.toLowerCase()}{" "}
                     <img src={chatIcon} alt="chatIcon" className="small-icon" />
                   </h5>
@@ -130,13 +140,15 @@ const DetailUser = (props) => {
               <div className="row no-gutters mb-3 mt-lg-5">
                 <div className="col text-center text-lg-left">
                   {userDetail.corporate_name ? (
-                    <h2 className="h2-name font-weight-bold">{userDetail.corporate_name}</h2>
+                    <h2 className="h2-name font-weight-bold">
+                      {userDetail.corporate_name}
+                    </h2>
                   ) : (
-                      <h2 className="h2-name font-weight-bold">
-                        {userDetail.first_name}&nbsp;{userDetail.last_name}
-                      </h2>
-                    )}
-                  <h5 className="h5-field">{userDetail.field}</h5>
+                    <h2 className="h2-name font-weight-bold">
+                      {userDetail.first_name}&nbsp;{userDetail.last_name}
+                    </h2>
+                  )}
+                  <h5 className="h5-field-white">{userDetail.field}</h5>
                 </div>
               </div>
               <div className="row no-gutters mt-lg-5">
@@ -186,24 +198,24 @@ const DetailUser = (props) => {
                         <h6>Hire Me</h6>
                       </button>
                     ) : (
-                        <button type="button" className="btn btn-hire">
-                          <h6>Apply</h6>
-                        </button>
-                      )
-                  ) : (
-                      <button type="button" className="btn btn-disable" disabled>
-                        <h6>Not Available</h6>
+                      <button type="button" className="btn btn-hire">
+                        <h6>Apply</h6>
                       </button>
                     )
+                  ) : (
+                    <button type="button" className="btn btn-disable" disabled>
+                      <h6>Not Available</h6>
+                    </button>
+                  )
                 ) : (
-                      <button
-                        type="button"
-                        className="btn btn-hire"
-                        onClick={handleShowModalEdit}
-                      >
-                        <h6 className="h6-btn">Edit</h6>
-                      </button>
-                    )}
+                  <button
+                    type="button"
+                    className="btn btn-hire"
+                    onClick={handleShowModalEdit}
+                  >
+                    <h6 className="h6-btn">Edit</h6>
+                  </button>
+                )}
               </div>
               {userDetail.type_name === "Engineer" ? (
                 <div className="col-lg-2 text-center text-lg-left mb-2 ">
